@@ -1,0 +1,42 @@
+<!-- 현재 문서가 HTML 5 형식의 문서임을 표시 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- head는 현재 문서에 대한 메타정보를 적는 엘리먼트 -->
+    <meta charset="UTF-8">
+    <title>HTML INTRO</title>
+</head>
+<body>
+    HTML 문서는 엘리먼트로 구성
+    엘리먼트는 시작태그 + 내용 + 종료태그 로 구성
+    시작태그에는 속성명 = "속성값" 으로 필요한 속성들을 정의
+    내용이 없는 엘리먼트는 종료태그를 생략하거나 시작태그의 끝부분을 /> 로 표시
+    HTML에서는 2개 이상의 연속된 공백문자 또는 줄바꿈 문자는 모두 하나의 공백으로 출력된다.
+    <p>하나의 문단 입니다.</p>
+    <p>
+        하나의 문단 입니다. <br> 하나의 문단 내부에서 줄바꿈을 하고 싶다면 &lt;br&gt; 엘리먼트를 사용 <br>
+        다수의 공백을 넣고 싶다면, &nbsp; &nbsp; &amp;nbsp; 특수문자를 사용
+
+    </p>
+    <h1>h1~h6 까지 제목을 출력하는 엘리먼트</h1>
+    <hr>
+    <p>
+        문서에서 <strong>이 부분</strong>을 강조하고 싶다. <br>
+        문서에서 <em>이 부분</em>을 강조하고 싶다. <br>
+        문서에서 <q>이 부분</q>은 인용문이다. <br>
+        문서에서 <blockquote>이 부분</blockquote>을 강조하고 싶다. <br>
+    </p>
+    <pre>
+        pre 엘리먼트의 내용은
+        쓴 그대로       공백과 줄바꿈이
+        출력된다.
+    </pre>
+    <p>
+        <Img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="구글로고">
+        <Img src="http://127.0.0.1:5500/img/car1.png" alt="자동차" width="100" height="100">
+        <Img src="/img/car1.png" alt="자동차" width="100" height="100">
+        <Img src="./img/car1.png" alt="자동차" width="100" height="100">
+        <Img src="img/car1.png" alt="자동차" width="100" height="100">
+    </p>
+</body>
+</html>

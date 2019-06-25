@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS TEXT STYLE</title>
+    <style>
+        #p1 {
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+            /* ==400 */
+            font-size: 16px;
+            line-height: 8px;
+            /* 텍스트 한 줄의 높이 */
+            font-family: Georgia, "Times New Roman", serif;
+            /* 사용할 폰트명을 ,로 구분하여 나열하면, 나열한 순서대로 찾아보고, 먼저 발견되는 폰트를 사용 */
+
+            /* font: font-style font-variant font-weight font-size/line-height font-family; */
+
+            /* 속기법 사용시 필요없는 속성값은 지정하지 않아도 되지만, font-size와 font-family는 필수 */
+        }
+
+        #p2 {
+            font-style: italic;
+            /* 흘려쓴 */
+            font-variant: normal;
+            font-weight: bold;
+            /* ==700 */
+            font-size: 16px;
+            line-height: 16px;
+            font-family: "Arial", "Verdana", sans-serif;
+        }
+
+        #p3 {
+            font-style: oblique;
+            /* 기울어진 */
+            font-variant: small-caps;
+            /* 작은 크기의 대문자로 */
+            font-weight: 100;
+            /* 100~900까지 사용가능 */
+            font-size: 16px;
+            line-height: 32px;
+            font-family: "Courier New", monospace;
+        }
+
+        /* CSS에서 크기를 설정하는 단위 */
+        /* px(화면의1픽셀), %(퍼센트), em(현재엘리먼트의기본폰트크기의배수) */
+        /* cm, mm, in, (센티미터,밀리미터,인치), pt(포인트=1/72in), pc(파이카=12pt), ex */
+        /* 일반적으로 브라우저가 디폴트로 설정하는 html의 폰트 사이즈는 16px */
+        #p1 .s1 {
+            font-size: 16px;
+        }
+
+        #p2 .s1 {
+            font-size: 16px;
+        }
+
+        #pa3 .s1 {
+            font-size: 16px;
+        }
+
+        #p1 .s2 {
+            font-size: 1em;
+        }
+
+        #p2 .s2 {
+            font-size: 1em;
+        }
+
+        #p3 .s2 {
+            font-size: 1em;
+        }
+
+        #p1 .s3 {
+            font-size: 100%;
+        }
+
+        #p2 .s3 {
+            font-size: 100%;
+        }
+
+        #p3 .s3 {
+            font-size: 100%;
+        }
+
+        /* CSS에서 색상을 지정하는 방법 */
+        /* 색상이름을 사용한 설정 */
+        /* #000000 : RGB 색상을 각각 16진수 2자리(00-FF==0-255)로 설정 */
+        /* #000 : RGB 색상을 각각 16진수 1자리(00-F==0-15)로 설정 */
+        /* opacity 속성으로 불투명도 설정 : 0~1.0 */
+        /* rgb( 0, 0, 0 ) : RGB 색상을 10진수 0-255로 설정 */
+        /* rgba( 0, 0, 0, 0 ) : RGB 색상을 10진수 0-255로 설정하고 투명도(alpha)를 0-1.0 으로 설정 */
+        /* hsla( 0, 0%, 0% ) : hue(색상) 0~360 (색상 종류), 채도(saturation) 0-100% (흑백-컬러), 명도(lightness) 0-100% (밝기) */
+        /* hsla( 0, 0%, 0%, 0 ) : 투명도 지정 가능 */
+        #p1 {
+            text-decoration: none;
+            /* text-align: 텍스트 내용 정렬 */
+        }
+
+        #p2 {
+        }
+
+        #p3 {
+        }
+
+        ul {
+            /* list-style-type : 글머리기호 모양 설정 (none, disc, circle, squre ...) */
+            /* list-style-position : 글머리기호의 위치 (li 엘리먼트의 내부 혹은 외부) */
+            /* list-style-image: url('이미지파일경로')로 글머리기호에 사용할 이미지 파일 설정 */
+            /* list-style: type position image 한번에 설정 가능 */
+        }
+
+        li {
+            /* 경계선을 1px 두께의 검정색 실선으로 설정 */
+        }
+
+        /* 클릭하면 다음과 구글로 이동하는 링크 생성 */
+        /* 링크들을 다음의 뉴스링크와 같이 보이도록 스타일 설정*/
+    </style>
+</head>
+<body>
+    <p id="p1">
+        <span class="s1">This is paragraph01.</span> 이것은 01번째 문단입니다.<br />
+        <span class="s2">This is paragraph01.</span> 이것은 01번째 문단입니다.<br />
+        <span class="s3">This is paragraph01.</span> 이것은 01번째 문단입니다.<br />
+    </p>
+    <p id="p2">
+        <span class="sp1">This is paragraph02.</span> 이것은 02번째 문단입니다.<br />
+        <span class="sp2">This is paragraph02.</span> 이것은 02번째 문단입니다.<br />
+        <span class="sp3">This is paragraph02.</span> 이것은 02번째 문단입니다.<br />
+    </p>
+    <p id="p3">
+        <span class="sp1">This is paragraph03.</span> 이것은 03번째 문단입니다.<br />
+        <span class="sp1">This is paragraph03.</span> 이것은 03번째 문단입니다.<br />
+        <span class="sp1">This is paragraph03.</span> 이것은 03번째 문단입니다.<br />
+    </p>
+    <ul>
+        <li>커피</li>
+        <li>코코아</li>
+        <li>녹차</li>
+    </ul>
+</body>
+</html>

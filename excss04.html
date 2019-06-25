@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS BOX MODEL</title>
+    <style>
+        #outbox {
+            /* width, height : 여백과 경계선을 제외한 내용(content) 영역의 너비와 높이 */
+            width: 400px;
+            height: 400px;
+            /* 경계선 두께 */
+            border-width: 10px;
+            /* 경계선 종류 */
+            border-style: solid;
+            /* 경계선 색상 */
+            border-color: red;
+            /* 상하좌우 안쪽여백(경계선과 내용물 사이의 공간)을 모두 20px로 설정 */
+            padding: 20px;
+            /* padding-top, padding-right, padding-bottom, padding-left 속성으로 상하좌우 여백을 각각 설정 가능 */
+            /* padding: top right bottom left; 순서로 상하좌우 여백을 다르게 설정 가능 */
+            /* padding: 상하 좌우; 순서로 상하와 좌우 여백을 다르게 설정 가능 */
+        }
+
+        .inbox {
+            width: 100px;
+            height: 100px;
+            border: 10px solid blue;
+            padding: 10px;
+            margin: 20px;
+            /* 인접하는 두 엘리먼트의 상하 바깥여백(margin)은 둘 중에 큰 값으로 통합된다 */
+            /* 블럭엘리먼트와 인라인엘리먼트의 변경은 display 속성을 통해서 가능 */
+            /*
+            블럭엘리먼트 기본 크기 : width는 차지할 수 있는한 최대한의 공간을 차지
+                                height는 내용물을 담을 수 있는 최소한의 공간을 차지
+                                width,height CSS 속성으로 크기 지정 가능
+            인라인엘리먼트 기본 크기 : width,height 모두 내용물을 담을 수 있는 최소한의 공간을 차지
+                                width,height CSS 속성값을 무시 (img 엘리먼트는 예외)
+            display: inline-block : 인라인 엘리먼트처럼 배치되지만, 크기 지정 가능
+            */
+        }
+
+        #box1 {
+            /* 화면에서 보이지 않고 공간도 차지하지 않음 */
+            /* display: none; */
+            /* 화면에서 보이지 않지만 공간은 차지함 */
+            /* visibility: hidden; */
+        }
+
+        #box2 {
+            /* background가 적용되는 영역은 경계선을 포함한 안쪽 영역 (margin 제외) */
+            background-color: darkorange;
+            /* background-image: url('이미지파일'); */
+            /* background-repeat : 배경이미지를 반복하여 적용할 것인지 설정 */
+            /* 배경이미지의 위치를 좌우위치, 상하위치 2가지 값으로 설정 (생략시 center) */
+            /* background-position: right bottom; */
+            /* 왼쪽 상단으로부터의 거리를 px 또는 % 단위로 설정 가능 */
+            /* background-position: 10px 50px; */
+            /* background-position: 50% 50%; */
+            /* background-attachment: 배경이미지의 스크롤 방식 - local(내용물스크롤시함께스크롤), scroll(엘리먼트와함께스크롤), fixed(스크롤되지않고고정) */
+
+            /* overflow: 엘리먼트 크기보다 내용물의 양이 많은 경우 어떻게 보여줄 것인지 설정 */
+            /* visible (보이기), hidden(감추기), auto(필요한경우스크롤바표시), scroll(항상스크롤바표시) */
+        }
+
+        #p1 {
+            border-style: solid;
+        }
+
+        #p2 {
+            border-style: dotted;
+        }
+
+        #p3 {
+            border-style: dashed;
+        }
+
+        #p4 {
+            border-style: double;
+        }
+
+        #p5 {
+            border-style: groove;
+        }
+
+        #p6 {
+            border-style: ridge;
+        }
+
+        #p7 {
+            border-style: inset;
+        }
+
+        #p8 {
+            border-style: outset;
+        }
+
+        #p9 {
+            /*다른 경계선과 겹쳐진 경우 그 경계선도 보이지 않게*/
+            border-style: hidden;
+        }
+
+        #p10 {
+            /*다른 경계선과 겹쳐진 경우 그 경계선은 보이게*/
+            border-style: none;
+        }
+
+        #p11 {
+            /* padding,border,margin 모두 상하좌우 각각 설정 가능*/
+            border-top-style: solid;
+            border-right-style: dotted;
+            border-bottom-style: double;
+            border-left-style: none;
+        }
+
+        .bbox {
+            border-width: 5px;
+            border-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outbox">
+        <div id="box1" class="inbox">상자1</div>
+        <div id="box2" class="inbox">
+            상자2
+        </div>
+    </div>
+    <p id="p1" class="bbox">border-style:solid 설정</p>
+    <p id="p2" class="bbox">border-style:dotted 설정</p>
+    <p id="p3" class="bbox">border-style:dashed 설정</p>
+    <p id="p4" class="bbox">border-style:double 설정</p>
+    <p id="p5" class="bbox">border-style:groove 설정</p>
+    <p id="p6" class="bbox">border-style:ridge 설정</p>
+    <p id="p7" class="bbox">border-style:inset 설정</p>
+    <p id="p8" class="bbox">border-style:outset 설정</p>
+    <p id="p9" class="bbox">border-style:hidden 설정</p>
+    <p id="p10" class="bbox">border-style:none 설정</p>
+    <p id="p11" class="bbox">border-style:none 설정</p>
+</body>
+
+</html>

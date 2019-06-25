@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS POSITION</title>
+    <style>
+        div.box {
+            border: 1px solid black;
+        }
+
+        div#bigbox {
+            width: 400px;
+            height: 400px;
+        }
+
+        div.small {
+            width: 100px;
+            height: 100px;
+            /* position 속성으로 엘리먼트의 배치 방식을 지정 */
+            /* static : 엘리먼트의 위치를 지정하지 않고, 브라우저가 일반적으로 배치하는 위치에 배치 (미지정시 디폴트값) */
+            /* relative : 기본적으로 배치된 위치(static)를 기준으로 상대적인 위치를 left,top 속성으로 지정 */
+            /* absolute : 조상 엘리먼트 중에서 가장 가까운 position 속성이 static이 아닌 엘리먼트를 기준으로 상대적인 위치를 left,top,right,bottom 속성으로 지정 */
+            /*            조상 엘리먼트 중에서 position 속성이 static이 아닌 엘리먼트가 없으면 문서(html)이 기준이 된다 */
+            /* fixed : 브라우저의 윈도우를 기준으로 left,top,right,bottom 속성으로 위치 지정 */
+        }
+
+        /* 엘리먼트가 겹쳐져서 배치될 때, z-index가 큰 엘리먼트가 더 위로 올라오게(덮게) 된다*/
+        #sbox1 {
+            background-color: yellow;
+        }
+
+        #sbox2 {
+            background-color: green;
+        }
+
+        #sbox3 {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS POSITION 연습</h1>
+    <div id="bigbox" class="box">
+        <div id="sbox1" class="box small">상자1</div>
+        <div id="sbox2" class="box small">상자2</div>
+        <div id="sbox3" class="box small">상자3</div>
+    </div>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+    <h1>CSS POSITION 연습</h1>
+</body>
+</html>
