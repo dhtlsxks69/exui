@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML FORM</title>
+</head>
+<body>
+    <form action="exhtml04.html">
+        <fieldset>
+            <legend>개인정보</legend>
+            아이디 : <input type="text" name="userid" value="abc" /> <br>
+            암호 : <input type="password" name="userpass" /> <br>
+        </fieldset>
+        성별 : <input type="radio" name="gender" value="male" checked id="rad1" />
+               <label for="rad1">남성</label>
+               <input type="radio" name="gender" value="female" id="rad2" />
+               <label for="rad2">여성</label>
+        <br>
+        음식 : <input type="checkbox" name="food" value="pizza" checked id="chk1" />
+               <label for="chk1">피자</label>
+               <input type="checkbox" name="food" value="chicken" id="chk2" />
+               <label for="chk2">치킨</label>
+               <input type="checkbox" name="food" value="burger" id="chk3" />
+               <label for="chk3">햄버거</label>
+        <br>
+        음료 : <select name="drink">
+            <option value="coffee">커피</option>
+            <option value="cola" selected>콜라</option>
+            <option value="tea">차</option>
+        </select>
+        <br>
+        음료 : <select name="drink2" multiple>
+            <option value="coffee">커피</option>
+            <option value="cola" selected>콜라</option>
+            <option value="tea" selected>차</option>
+        </select>
+        <br>
+        <textarea name="memo" cols="30" rows="10">abc</textarea>
+        <br>
+        <!-- <input type="file" name="upfile" /> -->
+        <input type="hidden" name="x" value="123">
+
+        <input type="submit" value="보내기" />
+        <input type="reset" value="취소" />
+    </form>
+</body>
+</html>
