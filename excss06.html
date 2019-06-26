@@ -11,11 +11,33 @@
             /* 블럭엘리먼트는 float 된 엘리먼트 밑으로 깔려서 배치될 수 있지만, */
             /* 블럭엘리먼트 내부의 텍스트나 인라인엘리먼트는 float된 엘리먼트를 피해서 배치된다 */
             /* clear : 현재 엘리먼트의 왼쪽 또는 오른쪽 또는 양쪽모두에 float된 엘리먼트가 없을 때까지 아래로 내려가서 배치 */
+            float: right;
         }
 
         /* 고정폭 레이아웃 구현 */
         /* inline-block, float, margin, clear */
-        
+        .container {
+            width: 1080px;
+            /* margin: 0px auto 0px auto; */
+            margin: 0px auto;
+        }
+        #header {
+            background-color: mediumpurple;
+        }
+        #aside {
+            background-color: lightsalmon;
+            width: 300px;
+            float: left;
+        }
+        #content {
+            background-color: cyan;
+            width: 780px;
+            margin-left: 300px;
+        }
+        #footer {
+            background-color: peru;
+            clear: left;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +51,11 @@
                 <li>메뉴03</li>
                 <li>메뉴04</li>
                 <li>메뉴05</li>
+                <li>메뉴06</li>
+                <li>메뉴07</li>
+                <li>메뉴08</li>
+                <li>메뉴09</li>
+                <li>메뉴10</li>
             </ul>
         </div>
         <div id="content">

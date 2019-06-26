@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS BASIC</title>
+    </head>
+    <body>
+        <h1>자바스크립트 연습</h1>
+        <p>html 파일에 자바스크립트를 포함시키는 방법
+           1. script 엘리먼트의 src 속성으로 외부 자바스크립트 파일을 포함
+           2. script 엘리먼트의 내용에 직접 자바 스크립트 코드를 입력
+        </p>
+        <div id="out"></div>
+        <input type="text" id="n1" /> + <input type="text" id="n2" /> <button id="btn">+</button> <input type="text" id="rs" />
+        <script type="text/javascript">
+        // 한줄 주석
+        /*
+            여러줄 주석
+        */
+        // 출력 명령문
+        // 1.창을 띄워서 창 안에 문자열 출력
+        // 2.브라우저(개발자도구)의 콘솔에 문자열 출력
+        // 3.현재 문서의 특정 엘리먼트의 내용에 문자열 출력
+        
+        // 자바스크립트 변수는 "var 변수명" 과 같은 형태로 선언하고, 별도의 타입 지정 없이 모든 타입의 값을 저장 가능
+        // (var 변수명; : 함수범위 변수 선언, let 변수명; : 블럭범위 변수 선언, const 변수명; : 블럭범위 상수 선언)
+        // 자바스크립트 기본(primitive) 데이터 타입 : number, boolean, string, (undefined)
+        var a = 123; //number
+        var b = 1.23; //number
+        var c = true; //boolean
+        var d = 'a'; //string : 자바스크립트에서는 문자열 표현에 홑따옴표와 쌍따옴표 모두 사용 가능
+        var e = "abc"; //string
+        var f; //undefined : 값을 저장하지 않은 변수의 값 또는 객체의 존재하지 않는 속성 값
+
+        var g = null; //object
+        var h = NaN; //Not a Number : 숫자가 아닌 값을 나타내는 숫자값
+        var i = Infinity; //무한대
+        
+        var j = [ 1, 2, 3 ]; //배열 : object
+        var k = { no: 1, name: "고길동", score:90 }; //객체 : object
+        var m = function(){ console.log("함수실행"); }; //함수 : function : object
+        // j 에 저장된 배열의 1번 칸에 들어있는 값 출력
+        // k 에 저장된 객체의 name 속성 값 출력
+        // m 에 저장된 함수를 실행
+        
+        // 기본형 타입간 (명시적) 형변환 : 각 타입 이름으로된 함수를 사용
+        var n = Number( "123" ); //숫자가 아닌 타입의 값을 숫자 타입 값으로 "123" -> 123
+        var o = String( true ); //문자열이 아닌 타입의 값을 문자열 타입 값으로 true -> "true"
+        var p = Boolean( "true" ); //boolean이 아닌 타입의 값을 boolean 타입 값으로 "true" -> true
+        
+        // 자동 형변환 : 자바스크립트에서는 값이 사용된 곳의 필요에따라서 타입이 자동으로 변환
+        console.log("value is " + 123); 
+        console.log(123 + true); 
+        
+        // 사용자로부터 입력을 받는 명령문
+        // 1. Yes,No를 입력받기 위한 창을 출력. 결과는 true,false로 반환
+        // 2. 사용자로부터 문자열을 입력받기 위한 창을 출력. 결과는 입력한 문자열을 반환
+        // 3. 현재 문서의 입력 엘리먼트로부터 사용자가 입력한 값을 가져오기
+        
+        //"첫번째숫자"와 "두번째숫자"를 입력받아서 그 합을 출력하도록 구현
+        
+        //동등비교연산자 : ==, ===, !=, !==
+        // == : 두 값의 타입이 다르면 타입을 자동 변환하여 비교
+        //      null 과 undefined 는 동일한 것으로 판단
+        //      가급적 number 타입으로 변환하여 비교
+        // === : 두 값의 타입이 다르면 다른 것(false)으로 판단
+        console.log( 0 == false );
+        console.log( 0 == "" );
+        console.log( 123 == "123" );
+        console.log( null == undefined );
+
+        //논리연산자 : &&, ||, !
+        // x && y : x 값을 boolean으로 판단(변환)했을 때 true 면 결과값은 y, false 면 결과값은 x
+        // x || y : x 값을 boolean으로 판단(변환)했을 때 true 면 결과값은 x, false 면 결과값은 y
+        // boolean으로 변환시 false로 변환되는 값들 : 숫자0, 빈문자열"", NaN, null, undefined
+        console.log( 3 && 4 );
+        console.log( 0 && 4 );
+        console.log( 3 || 4 );
+        console.log( 0 || 4 );
+
+        if ( 0 ) console.log("0은 true이다");
+        if ( "" ) console.log("빈문자열은 true이다");
+        if ( null ) console.log("null은 true이다");
+        if ( undefined ) console.log("undefined은 true이다");
+        if ( " " ) console.log("공백문자열은 true이다");
+        if ( "0" ) console.log("문자열 '0'은 true이다");
+    </script>
+</body>
+</html>
