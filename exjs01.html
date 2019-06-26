@@ -10,8 +10,11 @@
            1. script 엘리먼트의 src 속성으로 외부 자바스크립트 파일을 포함
            2. script 엘리먼트의 내용에 직접 자바 스크립트 코드를 입력
         </p>
-        <div id="out"></div>
-        <input type="text" id="n1" /> + <input type="text" id="n2" /> <button id="btn">+</button> <input type="text" id="rs" />
+        <input type="text" id="in" value="너부리" />
+        <button id='readBtn'>읽기</button>
+        <div id="out">출력할 곳</div>
+        <input type="text" id="n1" /> + <input type="text" id="n2" /> 
+        <button id="btn">=</button> <input type="text" id="rs" />
         <script type="text/javascript">
         // 한줄 주석
         /*
@@ -19,9 +22,19 @@
         */
         // 출력 명령문
         // 1.창을 띄워서 창 안에 문자열 출력
+        // alert('hello!'); //경고창
         // 2.브라우저(개발자도구)의 콘솔에 문자열 출력
+        console.log('debug!');
         // 3.현재 문서의 특정 엘리먼트의 내용에 문자열 출력
-        
+        // 3-1.문서에서 원하는 엘리먼트를 찾아오기
+        // document.querySelector('CSS선택자'); 선택자에 맞는 첫번째 엘리먼트를 찾아오기
+        // document.querySelectorAll('CSS선택자'); 선택자에 맞는 모든 엘리먼트들을 찾아오기
+        var outDiv = document.querySelector('#out'); //id가 out인 엘리먼트를 찾아와서 변수 outDiv에 저장
+        // 3-2.엘리먼트의 innerHTML 속성을 사용하여 엘리먼트의 내용을 읽어오거나 저장 가능
+        console.log(outDiv.innerHTML); //내용 읽기
+        outDiv.innerHTML = 'Hello JS!'; //내용 변경
+        outDiv.innerHTML = outDiv.innerHTML + ' Bye JS!'; //내용 추가
+
         // 자바스크립트 변수는 "var 변수명" 과 같은 형태로 선언하고, 별도의 타입 지정 없이 모든 타입의 값을 저장 가능
         // (var 변수명; : 함수범위 변수 선언, let 변수명; : 블럭범위 변수 선언, const 변수명; : 블럭범위 상수 선언)
         // 자바스크립트 기본(primitive) 데이터 타입 : number, boolean, string, (undefined)
@@ -40,8 +53,12 @@
         var k = { no: 1, name: "고길동", score:90 }; //객체 : object
         var m = function(){ console.log("함수실행"); }; //함수 : function : object
         // j 에 저장된 배열의 1번 칸에 들어있는 값 출력
+        console.log('배열 j의 1번칸의 값 : ', j[1]);
         // k 에 저장된 객체의 name 속성 값 출력
+        console.log('객체 k의 name속성 값 : ', k.name);
+        console.log('객체 k의 name속성 값 : ', k['name']);
         // m 에 저장된 함수를 실행
+        m();
         
         // 기본형 타입간 (명시적) 형변환 : 각 타입 이름으로된 함수를 사용
         var n = Number( "123" ); //숫자가 아닌 타입의 값을 숫자 타입 값으로 "123" -> 123
@@ -54,20 +71,58 @@
         
         // 사용자로부터 입력을 받는 명령문
         // 1. Yes,No를 입력받기 위한 창을 출력. 결과는 true,false로 반환
+        // var ok = confirm('진짜?');
+        // // console.log('confirm 결과 : ', ok);
+
         // 2. 사용자로부터 문자열을 입력받기 위한 창을 출력. 결과는 입력한 문자열을 반환
+        // var str = prompt('이름이 뭐예요?');
+        // console.log('prompt 결과 : ', str);
+        // outDiv.innerHTML = str;
+
         // 3. 현재 문서의 입력 엘리먼트로부터 사용자가 입력한 값을 가져오기
+        var inp = document.querySelector('#in'); //id가 in 인 엘리먼트를 찾아와서 변수 inp에 저장
+        console.log('입력 값 : ', inp.value);
         
+        //엘리먼트에 어떤 사건이 발생하면 특정 함수를 실행시키는 방법
+        // (1) 엘리먼트를 찾아오기
+        var rb = document.querySelector('#readBtn');
+        // (2) 해당 엘리먼트의 on이벤트이름 속성에 함수를 저장
+        rb.onclick = function(){ //rb 엘리먼트에 click 사건(이벤트)가 발생할 때마다 이 함수가 한번씩 실행된다
+            console.log(inp.value);
+            outDiv.innerHTML = inp.value;
+        };
+
         //"첫번째숫자"와 "두번째숫자"를 입력받아서 그 합을 출력하도록 구현
+        var n1 = document.querySelector('#n1');
+        var n2 = document.querySelector('#n2');
+        var bt = document.querySelector('#btn');
+        var rs = document.querySelector('#rs');
+
+        bt.onclick = function(){ //버튼을 클락하면 실행되는 함수 설정
+            //입력숫자 2개를 가져와서 더하기
+            // outDiv.innerHTML = Number(n1.value) + Number(n2.value);
+            var result = Number(n1.value) + Number(n2.value);
+            //더한 결과를 출력
+            // rs.value = outDiv.innerHTML;
+            rs.value = result;
+        };
         
         //동등비교연산자 : ==, ===, !=, !==
         // == : 두 값의 타입이 다르면 타입을 자동 변환하여 비교
         //      null 과 undefined 는 동일한 것으로 판단
         //      가급적 number 타입으로 변환하여 비교
         // === : 두 값의 타입이 다르면 다른 것(false)으로 판단
+        console.log('== 비교 결과');
         console.log( 0 == false );
         console.log( 0 == "" );
         console.log( 123 == "123" );
         console.log( null == undefined );
+
+        console.log('=== 비교 결과');
+        console.log( 0 === false );
+        console.log( 0 === "" );
+        console.log( 123 === "123" );
+        console.log( null === undefined );
 
         //논리연산자 : &&, ||, !
         // x && y : x 값을 boolean으로 판단(변환)했을 때 true 면 결과값은 y, false 면 결과값은 x

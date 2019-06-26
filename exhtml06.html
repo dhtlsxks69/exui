@@ -23,15 +23,15 @@
         </select>
         새창 검색 : <input type="text" name="q" />
         <input type="submit" value="새창검색"/> </form> <br>
-    <form action="https://www.daum.net/search" target="sub">
-        <select name="lr" >
-                <option value="lang_ko">한국어</option>
-                <option value="lang_en">영어</option>
-                <option value="lang_ja">일본어</option>
+    <form action="https://search.daum.net/search" target="sub">
+        <select name="w" >
+                <option value="news">뉴스</option>
+                <option value="cafe">카페</option>
+                <option value="blog">블로그</option>
         </select>
         iframe 검색 : <input type="text" name="q" />
         <input type="submit" value="iframe검색"/> <br>
-        <iframe src="https://www.daum.net/search" name="result" width="600" height="200" frameborder="1"></iframe>
+        <iframe src="https://search.daum.net/search" name="sub" width="800" height="400" frameborder="1"></iframe>
     </form>
     위 input에 검색어를 입력하고 submit 버튼을 클릭하면 구글 검색 결과 출력
     1. submit 버튼에 표시되는 글자를 "검색" 으로 변경

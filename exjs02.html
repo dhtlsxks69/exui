@@ -5,10 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS BRANCH and LOOP</title>
+</head>
+<body>
+    <h1>1</h1>
+    <input type="text" id="score" /><button id="btn1">평가</button>결과 : <span id="result"></span>
+    <h1>2</h1>
+    <select id="month">
+        <!-- option[value=$]{$}*12 option 여러개 만들 때-->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select> 월
+    <button id="btn2">계절</button>계절 : <span id="season"></span>
+
     <script>
         // 1.점수를 입력받아서 60-100 이면 통과, 0~59면 실패, 나머지는 유효하지 않은 점수라고 출력
+        var sc = document.querySelector('#score');
+        var bt1 = document.querySelector('#btn1');
+        var rs = document.querySelector('result');
+
+        bt1.onclick = function(){
+            
+        };
 
         // 2.월을 입력받아서 계절을 출력 (3-5 봄, 6-8여름, 9-11가을, 나머지 겨울)
+        var mo = document.querySelector('#month');
+        var bt2 = document.querySelector('#btn2');
+        var se = document.querySelector('season');
+
+        bt2.onclick = function(){
+            
+        };
 
         // 3.정수를 입력받아서 1부터 그 숫자까지의 합을 출력
 
@@ -20,8 +56,5 @@
         
         // 6.구구단을 테이블 형태로 출력
     </script>
-</head>
-<body>
-    
 </body>
 </html>

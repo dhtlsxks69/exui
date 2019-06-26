@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CSS SELECTOR</title>
+    <style>
+        /* 1. 모든 <h1> 엘리먼트들 (제목1, 제목2, 제목3, 제목4) 의 경계선을 black 실선으로 */
+        h1 {
+            border: 1px solid black;
+        }
+
+        /* 2. id=“head”인 엘리먼트 (제목1) 의 배경색을 green으로 */
+        #head {
+            background-color: green;
+        }
+
+        /* 3. 'good' class를 가지고 있는 모든 엘리먼트들 (딸기, 귤, 내용4) 의 글자색을 red 로 */
+        .good {
+            color: red;
+        }
+
+        /* 4. name 속성이 존재하는 모든 엘리먼트들 (foo, bar) 의 경계선을 red 실선으로 */
+        [name] {
+            border: 1px solid red;
+        }
+
+        /* 5. name 속성값이 mid 인 모든 엘리먼트들 (foo) 의 배경색을 yellow 로 */
+        [name="mid"] {
+            background-color: yellow;
+        }
+            
+        /* 6. 'good' class를 가지고 있는 모든 <li> 엘리먼트들 (딸기, 귤) 의 배경색을 gray 로 */
+        li.good {
+            background-color: gray;
+        }
+
+        /* 7. id=“content” 인 엘리먼트의 자손인 모든 <h1> 엘리먼트들 (제목2,제목3) 의 글자색을 yellow 로 */
+        #content h1 {
+            color: yellow;
+        }
+
+        /* 8. id=“content” 인 엘리먼트의 직속 자식인 모든 <h1> 엘리먼트들 (제목2) 의 배경색을 blue 로 */
+        #content>h1 {
+            background-color: blue;
+        }
+
+        /* 9. 모든 <li> 엘리먼트들과 모든 <p> 엘리먼트들 (딸기, 수박, 귤, 내용3, 내용4) 의 경계선을 blue 실선으로  */
+        li, p {
+             border: 1px solid blue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <h1>제목1</h1>
+    </div>
+    <div id="content">
+        <h1>제목2</h1>
+        <ul id="foodList">
+            <li class="good">딸기</li>
+            <li class="bad">수박</li>
+            <li class="good bad">귤</li>
+        </ul>
+        <div>
+            <h1>제목3</h1>
+        </div>
+        <p>내용3</p>
+    </div>
+    <div id="survey">
+        <h1>제목4</h1>
+        <p class="good">내용4</p>
+        <form action="index.html" method="post">
+            <input type="text" name="mid" id="myId" value="foo" />
+            <input type="button" id="idBtn" value="버튼1" />
+            <input type="text" name="item" id="myItem" value="bar" />
+            <input type="button" id="itemBtn" value="버튼2" />
+        </form>
+    </div>
+</body>
+
+</html>
