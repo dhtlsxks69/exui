@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS ARRAY EX</title>
+    <style>
+        td, th {
+            border: 1px solid black;
+        }
+        table {
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>상품목록</caption>
+        <thead><th>상품번호</th><th>상품명</th><th>가격</th></thead>
+        <tbody id="prods"></tbody>
+        <tfoot><td colspan="3">상품번호:<input type="text" id="pno" /> 상품명:<input type="text" id="pname" />가격:<input type="text" id="price" /><button id="save">저장</button></td></tfoot>
+    </table>
+    <script>
+        // 상품객체들을 저장하는 배열 생성
+        var prodList = [];
+        // 상품객체 { no : 상품번호, name : 상품명, price : 가격 } 
+        prodList.push( { no: 1, name: "인디안밥", price: 500 } );
+        prodList.push( { no: 2, name: "고래밥", price: 200 } );
+        prodList.push( { no: 3, name: "사또밥", price: 800 } );
+
+        //1. 현재 prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 출력
+        var pro = document.querySelector('#prods');
+        var no = document.querySelector('#pno');
+        var na = document.querySelector('#pname');
+        var pr = document.querySelector('#price');
+        var sabt = document.querySelector('#save');
+
+        // var p = prodList[0];
+        // pro.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '</tr>';
+        // var p = prodList[1];
+        // pro.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '</tr>';
+        // var p = prodList[2];
+        // pro.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '</tr>';
+
+        for (var i = 0; i < prodList.length; i++) {
+            prods.innerHTML += '<tr>' + '<td>' + prodList[i].no + '</td>' + '<td>' + prodList[i].name + '</td>' + '<td>' + prodList[i].price + '</td>' + '</tr>';
+        }
+
+        //2. 저장 버튼을 클릭하면, 입력한 상품 정보를 prodList 에 추가하고,
+        //  prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 다시 출력
+        //  input 엘리먼트에 입력되어 있는 값들은 초기화
+        sabt.onclick = function(){
+            // pro.innerHTML = pro.innerHTML + '<td>' + no.value + '</td>' + '<td>' + na.value + '</td>' + '<td>' + pr.value + '</td>';
+            for (var i = prodList.length-1; i < prodList.length+1; i++) {
+                prods.innerHTML += '<tr>' + '<td>' + prodList[i].no + '</td>' + '<td>' + prodList[i].name + '</td>' + '<td>' + prodList[i].price + '</td>' + '</tr>';
+                no.value = '';
+                na.value = '';
+                pr.value = '';
+            }
+        };
+
+    </script>
+</body>
+</html>

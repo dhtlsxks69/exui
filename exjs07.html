@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM</title>
+</head>
+<body>
+    <h1 id="title1" class="main" >제목01</h1>
+    <h1 id="title2">제목02</h1>
+    <h1 id="title3" class="main" >제목03</h1>
+    <input type="text" name="nick" value="옛날별명" />
+    <input type="text" name="hobby" />
+    <div id="mydiv">
+        <h1 class="main" >제목11</h1>
+        <h1 >제목12</h1>
+        <h1 class="main" >제목13</h1>
+        DOM (Document Object Model) : 문서의 모든 내용(엘리먼트들)을 객체로 생성하여 제공
+        BOM (Browser Object Model) : 브라우저(프로그램)의 기능들을 객체로 생성하여 제공
+        <ul id="mylist">
+            <li id="it1">item01</li>
+            <li id="it2">item02</li>
+            <li id="it3">item03</li>
+        </ul>
+    </div>
+    <script>
+        // window.document : 브라우저가 제공하는 문서(현재 html파일) 전체를 담고 있는 객체 
+        // window 는 브라우저 내에서 어디서든 사용 가능한 전역객체로서,
+        // window 의 속성은 window. 을 생략하고 사용 가능
+        console.log(window.document === document ); 
+
+        // 문서(화면)에 존재하는 엘리먼트(객체)를 찾아 오기
+        
+        //document 하위(안)에서 id 속성값이 지정한 문자열('title1')과 같은 엘리먼틀 (객체)를 찾아서 반환
+        var t1 = document.getElementById('title1'); 
+        console.log(  ); //엘리먼트의 id 속성값
+        console.log(  ); //엘리먼트의 내용(시작태그와종료태그사이의문자열)
+        console.log(  ); //엘리먼트의 이름(태그이름)
+        //엘리먼트의 내용을 '바뀐 제목 01'로 변경
+
+        // .getElementsByXXX('속성값') : XXX 속성의 값이 인자로 지정한 값과 일치하는 엘리먼트들을 담은 유사배열(배열은 아니지만 배열과 비슷하게 사용가능)를 반환
+        //태그 이름이 h1인 엘리먼트(객체)들을 찾기
+        var hdList = document.getElementsByTagName('h1');
+        console.log( 'h1 엘리먼트 수 : ');
+        // 찾은 엘리먼트들의 내용을 모두 '다 같은 제목' 로 변경
+        
+        //클래스 속성값에 main이 있는 엘리먼트들을 찾기
+        var mainList = document.getElementsByClassName('main'); 
+        // 찾은 엘리먼트들의 내용을 모두 'main 제목' 로 변경
+        
+        
+        //name 속성값이 nick인 엘리먼트들을 찾기
+        var inList = document.getElementsByName('nick');
+        // 찾은 엘리먼트들의 value 속성 값을 '새 별병' 으로 변경
+        
+
+        //특정 엘리먼트 내부에 존재하는 엘리먼트들을 대상으로 검색
+        //id가 mydiv인 엘리먼트 내부에 존재하는 태그 이름이 h1인 엘리먼트들을 찾아서 내용을 'div 내부 제목'으로 변경
+        
+
+        
+        
+        // id 속성 값이 'mylist'인 엘리먼트의 모든 자식 엘리먼트들의 내용을 출력
+        
+        // id 속성 값이 'it2'인 엘리먼트의 모든 부모 엘리먼트들의 id 속성 값을 출력
+
+        // id 속성 값이 'it2'인 엘리먼트의 모든 조부모 엘리먼트들의 id 속성 값을 출력
+
+        // id 속성 값이 'it2'인 엘리먼트의 바로 직전 형제 엘리먼트의 id 속성 값을 출력
+        
+        // id 속성 값이 'it2'인 엘리먼트의 바로 다음 형제 엘리먼트의 id 속성 값을 출력
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM EX</title>
+    <style>
+        #outDiv {
+            border: 1px solid black;
+            padding: 20px;
+        } 
+    </style>
+    <script>
+        // 1.선택 버튼을 클릭하면,
+        // - 주문자 입력 내용을 수령인에 동일하게 복사 입력
+        // - food, fruit, drink 에서 무엇을 선택했는지 outDiv에 출력
+        //   food : 스파게티 
+        //   fruit : 딸기, 귤
+        //   drink : 쥬스
+
+        // 2.food, fruit, drink 값을 변경할 때마다, 해당 내용을 출력
+
+    </script>
+</head>
+<body>
+    <fieldset>
+      <legend>개인정보</legend>
+      <label for="in1">주문자</label>
+      <input type="text" name="nick" value="" id="in1" /><br />
+      <label for="in2">수령인</label>
+      <input type="text" name="pass" value="" id="in2" />
+    </fieldset>
+
+    <input type="radio" name="food" value="pizza" id="rad1" />
+    <label for="rad1">피자</label>
+    <input type="radio" name="food" value="spagetti" checked="checked" id="rad2" />
+    <label for="rad2">스파게티</label>
+    <input type="radio" name="food" value="doria" id="rad3" />
+    <label for="rad3">도리아</label>
+    <input type="checkbox" name="fruit" value="berry" checked="checked" id="chk1" />
+    <label for="chk1">딸기</label>
+    <input type="checkbox" name="fruit" value="melon" id="chk2" />
+    <label for="chk2">수박</label>
+    <input type="checkbox" name="fruit" value="orange" checked="checked" id="chk3" />
+    <label for="chk3">귤</label>
+
+    <select name="drink">
+      <option value="coffee">커피</option>
+      <option value="juice" selected="selected" >쥬스</option>
+      <option value="greentea">녹차</option>
+    </select>
+    <input type="button" value="선택" id="okBtn" />
+    <hr />
+    <div id="outDiv"></div>
+</body>
+</html>

@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS BRANCH and LOOP</title>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+        table{
+            border-spacing: 0px;  /*표 끼리의 간격을 늘이고 줄이는 데 쓰임*/
+            border-collapse: collapse;  /*표 끼리의 선 붙어있는 것을 합쳐주는 데 쓰임*/
+        }
+    </style>
 </head>
 <body>
     <h1>1</h1>
-    <input type="text" id="score" /><button id="btn1">평가</button>결과 : <span id="result"></span>
+    <input type="text" id="score" /> <button id="btn1">평가</button> 결과 : <span id="result"></span>
     <h1>2</h1>
     <select id="month">
         <!-- option[value=$]{$}*12 option 여러개 만들 때-->
+        <option value="">선택</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -24,37 +34,171 @@
         <option value="10">10</option>
         <option value="11">11</option>
         <option value="12">12</option>
-    </select> 월
-    <button id="btn2">계절</button>계절 : <span id="season"></span>
-
+    </select> 월의
+    <!-- <button id="btn2">계절</button> -->
+    계절 : <span id="season"></span>
+    <h1>3</h1>
+    <div><input type="text" id="start" />부터 <input type="text" id="end" />까지의 <button id="sumBtn">합</button>은 <span id="sum"></span></div>
+    <h1>4</h1>
+    <div><input type="text" id="num" />를 <button id="addBtn">더하면</button> 총합은 <input type="text" id="total" /><button id="reset">초기화</button></div>
+    <h1>5</h1>
+    <div>
+        <select id="dan">
+            <option value="">선택</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select> 단까지 <button id="outBtn">구구단 출력</button>
+        <div id="out"></div>
+    </div>
+    <h1>6</h1>
+    <ul id="todos"></ul>
+    <input type="text" id="do" /> <button id="saveBtn">추가</button>
     <script>
         // 1.점수를 입력받아서 60-100 이면 통과, 0~59면 실패, 나머지는 유효하지 않은 점수라고 출력
         var sc = document.querySelector('#score');
         var bt1 = document.querySelector('#btn1');
-        var rs = document.querySelector('result');
+        var rs = document.querySelector('#result');
 
         bt1.onclick = function(){
-            
+            var score = Number(sc.value);
+            var msg = '유효하지 않은 점수';
+            if (60 <= score && score <= 100) {
+                msg = '통과';
+            } else if (0 <= score && score < 60) {
+                msg = '실패';
+            }
+            // else {msg = '유효하지 않은 점수';}
+            rs.innerHTML = msg;
         };
 
         // 2.월을 입력받아서 계절을 출력 (3-5 봄, 6-8여름, 9-11가을, 나머지 겨울)
         var mo = document.querySelector('#month');
-        var bt2 = document.querySelector('#btn2');
-        var se = document.querySelector('season');
+        // var bt2 = document.querySelector('#btn2');
+        var se = document.querySelector('#season');
 
-        bt2.onclick = function(){
-            
+        //입력 엘리먼트들의 값(value)이 변경된 경우, change 이벤트가 발생된다
+        mo.onchange = function(){   // 날짜를 선택을 때
+        // bt2.onclick = function(){  버튼을 눌렀을 떄
+            var month = mo.value;
+            var msg = '알 수 없는 계절';
+            switch (month) {
+                case '12': 
+                case '1': 
+                case '2': msg = '겨울'; break;
+                case '3': 
+                case '4': 
+                case '5': msg = '봄'; break;
+                case '6': 
+                case '7': 
+                case '8': msg = '여름'; break;
+                case '9': 
+                case '10': 
+                case '11': msg = '가을'; break;
+                default: break;
+            }
+            /*if (3 <= month && month <= 5) {   if문
+                msg = '봄';
+            } else if (6 <= month && month <= 8) {
+                msg = '여름';
+            } else if (9 <= month && month <= 11) {
+                msg = '가을';
+            }*/
+            // else {msg = '겨울';}
+            se.innerHTML = msg;
         };
 
-        // 3.정수를 입력받아서 1부터 그 숫자까지의 합을 출력
+        // 3.input 엘리먼트들에 시작 정수와 끝 정수를 입력하고, 합 버튼을 클릭하면, 그 범위의 정수들의 합을 출력
+        var st = document.querySelector('#start');
+        var ed = document.querySelector('#end');
+        var bt3 = document.querySelector('#sumBtn');
+        var su = document.querySelector('#sum');
+        
+        bt3.onclick = function(){
+            var start = Number(st.value);   //parsenInt()도 사용가능 -- 실수
+            var end = Number(ed.value);
+            var sum = 0;
+            for (var i = start; i <= end; i++) {     //let, const = var와 같은 함수 범위는 블록범위
+                var sum = sum + i;  // sum += i;
+            }
+            su.innerHTML = sum;
+        };
 
-        // 4.시작 정수와 끝 정수를 입력받아서 그 범위의 정수들의 합을 출력
-        
-        // 5.사용자로부터 숫자를 계속 입력받아서 입력받은 숫자의 총합을 출력
-        //  취소버튼 클릭시, 초기화
-        //  숫자가 아닌 문자열 입력시 : 덧셈을 하지 않고 "숫자가 아닌 것을 입력했다"는 메시지를 출력
-        
-        // 6.구구단을 테이블 형태로 출력
+        // 4. - 맨 처음에는 총합 값을 0으로 출력하고, 키보드 입력으로는 변경할 수 없도록 설정
+        //    - '더하면' 버튼을 클릭할 때마다, input 에 입력되어 있는 수를 현재 총합 값에 더해서 새로운 총합 값으로 출력
+        //    - '초기화' 버튼 클릭시, 총합 값을 다시 0으로 출력
+        //    - 숫자가 아닌 값을 입력한 경우, 총합에 더하지 않고 "숫자가 아닌 것을 입력했다"는 경고 메시지를 출력(alert)하고, input 엘리먼트를 초기화
+        var nu = document.querySelector('#num');
+        var bt4 = document.querySelector('#addBtn');
+        var to = document.querySelector('#total');
+        var rebt = document.querySelector('#reset');
+
+        to.value = 0;
+        to.disabled = true;     // input에다 넣는 방법도 있음
+
+        bt4.onclick = function(){
+            //입력값이 없는 경우
+            if (nu.value.length === 0) { //(nu.value === '') 방법도 있음
+                alert('값을 입력하세요');
+                return;
+            }
+            var num = Number(nu.value);
+            //숫자가 아닌 값을 입력한 경우 (num 변수 값이 NaN인 경우)
+            //NaN은 비교연산자로 비교할 수 없고, isNaN() 함수로 확인 가능  ()<--괄호 안이 정상적인 숫자면 true 아니면 false
+            if (isNaN(num) == true) { //숫자 아닌 경우
+                alert('님 숫자 모름?');
+                nu.value = '';
+                return;
+            }
+            var total = Number(to.value);
+            total = total + num;  // total += num;
+            to.value = total;
+        };
+
+        rebt.onclick = function(){
+            to.value = 0;
+        };
+
+        // 5.구구단을 테이블 형태로 출력
+        //  select 에서 단 수를 선택하고, 구구단 출력 버튼을 클릭하면, 선택한 단까지 구구단을 테이블로 생성하여 id가 out인 div 안에 출력
+        //  구구단 테이블 모양은 아래 이미지를 참고하여 2가지 형태로 출력
+        // https://i2.wp.com/www.happyfam.or.kr/ysoh/wp-content/uploads/sites/3/1/cfile10.uf.133865234C84222C43F18D.gif?resize=500%2C342
+        // https://4.bp.blogspot.com/-sMnQzltEQNY/WCqNbKngF2I/AAAAAAAACd8/JuOc1vTm2C8NRnFfmNR3TxqSzXXucXlEACLcB/s1600/K-004.png
+        var da = document.querySelector('#dan');
+        var bt5 = document.querySelector('#outBtn');
+        var ou = document.querySelector('#out');
+
+        bt5.onclick = function(){
+            var html = '';
+            html = html + '<table>' + '<tbody>';
+            var dan = Number(da.value);
+            for (var x = 2; x <= dan; x++) {
+                html = html + '<tr>';
+                for (var y = 1; y <= 9; y++) {
+                    html = html + '<td>' + x + '*' + y + '=' + (x*y) + '</td>';
+                }
+                html = html + '</tr>';
+            }
+            html = html + '</tbody>' + '</table>';
+            ou.innerHTML = html;
+        };
+
+        // 6.
+        var todoList = document.querySelector('#todos');
+        var todoIn = document.querySelector('#do');
+        var bt6 = document.querySelector('#saveBtn');
+
+        bt6.onclick = function() {
+            var todo = todoIn.value;
+            todoList.innerHTML = todoList.innerHTML + '<li>' + todo + '</li>';
+            //todoList.innerHTML += '<li>' + todo + '</li>';
+            todoIn.value = '';
+        };
     </script>
 </body>
 </html>
