@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+        #imgDiv img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <button id="addImgBtn">이미지 추가</button>
+    <button id="addTxtBtn">텍스트 추가</button>
+    <button id="delImgBtn">이미지 포함 DIV 삭제</button>
+    <div id="txtDiv"></div>
+    <div id="imgDiv"></div>
+    <script>
+        //이미지 추가버튼을 클릭하면 "./img/car1.png" 그림 파일을 imgDiv에 추가
+        var imgBtn = document.querySelector('#addImgBtn');
+        var imgDiv = document.querySelector('#imgDiv');
+        imgBtn.onclick = function(){
+            //엘리먼트를 추가하는 방법1                
+            // imgDiv.innerHTML += '<img src="./img/car1.png" />';
+
+            //엘리먼트를 추가하는 방법2                
+            var newImg = document.createElement('img'); //<img />
+            // newImg.src = './img/car1.png'; //<img src="./img/car1.png" />
+            newImg.setAttribute('src', './img/car1.png'); //<img src="./img/car1.png" />
+            //imgDiv 엘리먼트의 자식 엘리먼트로 새로 만든 img 엘리먼트를 추가
+            imgDiv.appendChild(newImg);
+        };
+
+        //텍스트 추가버튼을 클릭하면 h1 엘리먼트를 txtDiv에 추가
+        var txtDiv = document.querySelector('#txtDiv');
+        var txtBtn = document.querySelector('#addTxtBtn');
+        txtBtn.onclick = function(){
+            //엘리먼트를 추가하는 방법1
+            // txtDiv.innerHTML += '<h1>제목</h1>';
+
+            //엘리먼트를 추가하는 방법2                
+            var newH = document.createElement('h1'); //<h1></h1>
+            // newH.innerHTML = '제목'; //<h1>제목</h1>
+            newH.appendChild(document.createTextNode('제목')); //<h1>제목</h1>
+            txtDiv.appendChild(newH);
+        };
+
+        // textContent 속성에 태그가 포함된 문자열을 저장하면, 태그는 모두 특수문자로 변환되어 저장
+        // txtDiv.innerHTML += '<h1>제목11</h1>'; 콘솔창에서 해석이 되게 하는것
+        txtDiv.textContent += '<h1>제목22</h1>'; //--> '&lt;h1&gt;제목22&lt;/h1&gt;' 해석이 안되게 하는것
+
+        // textContent 속성값을 읽으면, 내용 중 태그들은 모두 제거되고, 순수한 문자열 내용만 가져온다
+        // console.log( document.body.innerHTML );
+        // console.log( document.body.textContent );
+
+        //삭제 버튼을 클릭하면, 모든 이미지들을 삭제
+        //엘리먼트 삭제 : 부모엘리먼트.removeChild(삭제할자식엘리먼트)
+        var delBtn = document.querySelector('#delImgBtn');
+        delBtn.onclick = function(){
+            //imgDiv 를 삭제
+            // imgDiv.remove();  익스플로어 미지원
+            // document.body.removeChild(imgDiv);
+            // imgDiv.parentElement.removeChild(imgDiv);
+
+            //imgDiv 내부의 img 엘리먼트들을 삭제
+            var imgList = imgDiv.querySelectorAll('img');
+            // var imgList = document.querySelectorAll('#imgDiv img');
+            for (var i = 0; i < imgList.length; i++) {
+                var img = imgList[i];
+                img.parentElement.removeChild(img);
+                // img.removeChild(img);
+            }
+        };
+    </script>
+</body>
+</html>

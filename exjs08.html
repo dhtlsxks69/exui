@@ -4,54 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JS DOM EX</title>
+    <title>JS DOM ATTRIBUTE</title>
     <style>
-        #outDiv {
-            border: 1px solid black;
-            padding: 20px;
-        } 
+        .best {
+            background-color: yellow;
+        }
     </style>
-    <script>
-        // 1.선택 버튼을 클릭하면,
-        // - 주문자 입력 내용을 수령인에 동일하게 복사 입력
-        // - food, fruit, drink 에서 무엇을 선택했는지 outDiv에 출력
-        //   food : 스파게티 
-        //   fruit : 딸기, 귤
-        //   drink : 쥬스
-
-        // 2.food, fruit, drink 값을 변경할 때마다, 해당 내용을 출력
-
-    </script>
 </head>
 <body>
-    <fieldset>
-      <legend>개인정보</legend>
-      <label for="in1">주문자</label>
-      <input type="text" name="nick" value="" id="in1" /><br />
-      <label for="in2">수령인</label>
-      <input type="text" name="pass" value="" id="in2" />
-    </fieldset>
+    <img src="./img/car1.png" alt="자동차" id="ballImg" data-price="10000" />
+    <ul>
+        <li id="item1" class="food best">피자</li>
+        <li id="item2" class="food">스파게티</li>
+        <li id="item3" class="food">햄버거</li>
+    </ul>
+    <label for="cbox1">딸기</label>
+    <input type="checkbox" name="fruit" id="cbox1" checked="checked" />
+    <label for="cbox2">수박</label>
+    <input type="checkbox" name="fruit" id="cbox2" />
+    <div id="box" style="width:200px;height:200px;background-color:brown;" >빈상자</div>
+    <script>
+        //텍스트로 된 HTML 문서 상에 존재하는 엘리먼트의 속성을 attribute라고 하고,
+        //document.querySelector() 명령문으로 찾아온 엘리먼트 객체의 속성을 property라고 한다.
+        //attribute는 "엘리먼트.getAttribute('속성명')" 또는 "엘리먼트.setAttribute('속성명', '속성값')" 로 속성값을 읽고 쓴다.
+        //property는 "엘리먼트.속성명"으로 속성값을 읽고 쓴다.
+        //attribute와 property는 대부분 이름과 값이 동일하지만, 조금씩 다른 경우도 존재한다.
+        
+        //속성 값이 동일한 경우와 약간 다른 경우
+        //<img src="./img/car1.png" alt="자동차" id="ballImg" data-price="10000" />
+        //{nodeName: 'IMG', src:"./img/car1.png", id:"ballImg", alt:"자동차" ...}
+        var bimg = document.querySelector('#ballImg');
+        console.log(bimg.id); //property
+        console.log(bimg.getAttribute('id')); //attribute
+        console.log(bimg.src); //property
+        console.log(bimg.getAttribute('src')); //attribute
 
-    <input type="radio" name="food" value="pizza" id="rad1" />
-    <label for="rad1">피자</label>
-    <input type="radio" name="food" value="spagetti" checked="checked" id="rad2" />
-    <label for="rad2">스파게티</label>
-    <input type="radio" name="food" value="doria" id="rad3" />
-    <label for="rad3">도리아</label>
-    <input type="checkbox" name="fruit" value="berry" checked="checked" id="chk1" />
-    <label for="chk1">딸기</label>
-    <input type="checkbox" name="fruit" value="melon" id="chk2" />
-    <label for="chk2">수박</label>
-    <input type="checkbox" name="fruit" value="orange" checked="checked" id="chk3" />
-    <label for="chk3">귤</label>
+        //커스텀 속성 : 원래 HTML 문법에는 존재하지 않는데, 임의로 만들어 넣은 속성 (속성 이름은 data-로 시작하도록 짓는 것을 권장)
+        //커스텀 속성은 getAttribute(), setAttribute() 로 읽고 쓰기
+        console.log(bimg['data-price']); //property
+        console.log(bimg.getAttribute('data-price')); //attribute
+        
+        //피자에서 best 클래스를 제거하고, 스파게티에 best 클래스를 추가
+        //엘리먼트의 클래스 조작은 classList 속성을 사용
+        var pizza = document.querySelector('#item1');
+        var pasta = document.querySelector('#item2');
+        console.log(pizza.classList);
+        pizza.classList.remove('best');
+        pasta.classList.add('best');
 
-    <select name="drink">
-      <option value="coffee">커피</option>
-      <option value="juice" selected="selected" >쥬스</option>
-      <option value="greentea">녹차</option>
-    </select>
-    <input type="button" value="선택" id="okBtn" />
-    <hr />
-    <div id="outDiv"></div>
+        //현재 딸기와 수박이 선택되어 있는지 확인하고, 수박은 체크, 딸기는 체크해제
+        var cb1 = document.querySelector('#cbox1');
+        var cb2 = document.querySelector('#cbox2');
+        console.log('딸기 : ', cb1.checked);  //property
+        console.log('딸기 : ', cb1.getAttribute('checked'));  //attribute
+        console.log('수박 : ', cb2.checked);  //property
+        console.log('수박 : ', cb2.getAttribute('checked'));  //attribute
+        // cb2.checked = true;
+        cb2.setAttribute('checked', 'checked');
+        // cb1.checked = false;
+        // cb1.setAttribute('checked', null);
+        cb1.removeAttribute('checked');
+
+        //id가 box인 div의 너비를 300px, 높이를 100px, 배경색을 'green'으로 변경
+        //CSS 스타일은 "엘리먼트.style.스타일속성명"을 사용 (스타일 속성명은 -를 제거하고 낙타표기법 사용)
+        var boxDiv = document.querySelector('#box');
+        console.log(boxDiv.style);
+        console.log(boxDiv.getAttribute('style'));
+        console.log(boxDiv.style.width);
+        boxDiv.style.width = '300px';
+        boxDiv.style.height = '100px';
+        boxDiv.style.backgroundColor = 'green';
+
+    </script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM EX</title>
+    <style>
+        #product img , #cart img {
+            width: 50px;
+            height: 50px;
+        }
+        #product , #cart {
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>상품목록</h1>
+    <div id="product">
+        <img src="./img/car1.png" />
+        <img src="./img/car2.png" />
+        <img src="./img/car3.png" />
+    </div>
+    <h1>장바구니</h1>
+    <div id="cart"></div>
+    <script>
+        // 1. id 가 product 인 div 안에 있는 img 엘리먼트 클릭하면, 
+        //  클릭한 img 엘리먼트와 동일한 엘리먼트를 id 가 cart 인 div 에 추가
+        var prodList = document.querySelectorAll('#product img');
+        var cartDiv = document.querySelector('#cart');
+        
+        for (var i = 0; i < prodList.length; i++) {
+            var p = prodList[i];
+            p.onclick = function(){
+                // cartDiv.innerHTML += '<img src="'+this.src+'" />';
+                var newImg = document.createElement('img'); //<img>
+                newImg.src = this.src; //'<img src="'+this.src+'" />'
+                cartDiv.appendChild(newImg);
+                // newImg.onclick = function(){
+                //     this.parentElement.removeChild(this);
+                //     // cartDiv.removeChild(this);
+                // }
+            }
+        }
+
+        // 2. id 가 cart 인 div 안에 있는 img 엘리먼트 클릭하면, 
+        //  클릭한 img 엘리먼트를 삭제
+        cartDiv.onclick = function(ev){
+            // console.log(this);  //cartDiv 엘리먼트
+            // console.log(ev.currentTarget);  //cartDiv 엘리먼트
+            console.log(ev.target.nodeName);  //클릭된 img 엘리먼트
+            if (ev.target.nodeName === 'IMG') {
+                // ev.target.parentElement.removeChild(ev.target);
+                cartDiv.removeChild(ev.target);
+            }
+        };
+
+    </script>
+</body>
+</html>

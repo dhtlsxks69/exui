@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        table {
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-    
+    <table border="1">
+        <caption>성적표</caption>
+        <thead>
+            <tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>너부리</td><td>95</td><td>A</td><td>92</td></tr>
+            <tr><td>2</td><td>포로리</td><td>92</td><td>92</td><td>92</td></tr>
+            <tr><td>3</td><td>호랭이</td><td>77</td><td>C</td><td>92</td></tr>
+            <tr><td>4</td><td>보노보노</td><td>88</td><td>B</td><td>92</td></tr>
+        </tbody>
+        <tfoot>    
+            <tr><td>평균</td><td>85</td><td>B</td><td>92</td><td>92</td></tr>
+        </tfoot>
+    </table>
+
+    <a href="exhtml02.html">exhtml02.html로 이동</a> <br>
+    <a href="exhtml02.html" target="_self">exhtml02.html로 이동(self 프레임안에서 바뀜)</a> <br>
+    <a href="exhtml02.html" target="_parent">exhtml02.html로 이동(parent 부모창이 바뀜)</a> <br>
 </body>
 </html>

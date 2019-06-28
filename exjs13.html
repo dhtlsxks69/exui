@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS BOM</title>
+    <script>
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        var btn3 = document.querySelector('#btn3');
+        var btn4 = document.querySelector('#btn4');
+        
+        //현재 윈도우의 문서(연결된 css,js,이미지파일 등 모두) 로드가 완료되어 load 이벤트가 발생하면 실행될 함수를 설정
+        window.onload = function(){
+
+            btn1.onclick =function(){
+                var mywin = window.open('exjs13_1.html'); //새 창(탭)을 열고, 지정한 주소의 웹문서를 로드
+                // 새로 열린 창(탭)의 window 객체를 반환
+                // var mywin = window.open('exjs13_1.html', 'mywin'); //새 창(탭)의 이름 지정 가능
+                // 지정한 이름의 윈도우가 이미 존재하면 그 창에서 문서를 로드하고, 없으면 새 창을 열고 로드
+                // var mywin = window.open('exjs13_1.html', 'mywin', 'width=400,height=200'); 
+                // 새 창(탭)의 크기나 모양을 옵션으로 지정 가능
+            };
+
+            btn2.onclick =function(){
+                // mywin.moveTo(300, 100); //지정된 좌표로 이동
+                // mywin.moveBy(50, 50); //지정된 양만큼씩 이동
+                // mywin.resizeTo(800,400);//창크기를 지정된 크기로 
+                // mywin.resizeBy(50,50);//창크기를 지정된 양만큼 증가
+                // mywin.focus(); //지정된 창이 포커스를 받도록
+                
+                // 윈도우객체를 통해서 자식창의 문서에 접근 및 사용 가능
+                // mywin 내부에 있는 input 엘리먼트에 '부모창에서보낸값'을 출력
+                
+                // 자식창에서는 window.opener 를 통해서 자신을 window.open()으로 연 부모창 객체를 사용
+            };
+            
+            btn3.onclick =function(){
+                //창 닫기
+                mywin.close(); 
+            };
+            
+            //window.screen : 컴퓨터(모니터)의 화면에 대한 정보 제공
+            console.log( '시스템 화면 크기 : ' + window.screen.width + ',' + window.screen.height );
+            console.log( '가용 화면 크기 : ' + screen.availWidth + ',' + screen.availHeight );
+            console.log( '색상비트수,픽셀비트수 : ' + screen.colorDepth + ',' + screen.pixelDepth );
+            
+            //window.location : 현재 윈도우의 주소에 대한 정보를 제공하거나 변경
+            console.log( '현재 문서의 전체 주소(URL) : ' + window.location.href );
+            console.log( '프로토콜 + 호스트명 + 포트번호 : ' + window.location.origin );
+            console.log( '호스트명 + 포트번호 : ' + window.location.host );
+            console.log( '프로토콜 : ' + window.location.protocol );
+            console.log( '호스트명 : ' + window.location.hostname );
+            console.log( '포트번호 : ' + window.location.port );
+            console.log( '경로 : ' + window.location.pathname );
+            console.log( '해시 : ' + window.location.hash ); // #xxxx
+            console.log( '쿼리(파라미터) : ' + window.location.search ); // aaa=bbb&ccc=ddd
+            
+            btn4.onclick = function(){
+                //자바스크립트로 페이지 이동
+                //window.location.href = 'http://google.com/';
+                //window.location.assign( 'http://google.com/' );
+                //window.location.replace( 'http://google.com/' );
+                //현재 URL을 방문했던 주소 목록에 저장하지 않고, 그 URL을 기록하는 위치에 새 URL을 덮어쓴다
+                // window.location.reload(); //현재 문서 다시 로드(브라우저의 새로고침 버튼 눌렀을 때와 동일)
+
+                //window.history : 현재 창에서 방문한 웹 문서의 주소(URL)들을 저장하고 있는 객체
+                console.log( '현재 브라우저 방문 기록 수 : ' + window.history.length );
+                // window.history.back(); //브라우저의 뒤로가기 버튼을 눌렀을 때와 동일
+                // window.history.forward(); //브라우저의 앞으로가기 버튼을 눌렀을 때와 동일
+                // window.history.go(-1); //== window.history.back();
+                // window.history.go(1); //== window.history.forward();
+                // window.history.go(-2);  //== window.history.back() 2회 실행과 동일
+                // window.history.go(0);  //== window.location.reload();
+            };
+            
+            //window.navigator : 브라우저(프로그램)에 대한 정보를 저장하고 있는 객체
+            console.log( "앱 코드명 : " + window.navigator.appCodeName );
+            console.log( "앱 이름 : " + window.navigator.appName );
+            console.log( "앱 버전 : " + window.navigator.appVersion );
+            console.log( "플랫폼 : " + window.navigator.platform );
+            console.log( "브라우저 정보 : " + window.navigator.userAgent );
+
+
+            var clock = document.querySelector('#clock');            
+            var startBtn = document.querySelector('#startBtn');            
+            var stopBtn = document.querySelector('#stopBtn');            
+            
+            var timerId = null;
+
+            function clockwork(){
+                alert('시간 됐다!');
+                // clock.innerHTML = new Date().toLocaleTimeString();
+                //1초후에 이 함수를 다시 실행
+                // timerId = window.setTimeout( clockwork, 1000 );
+            }    
+
+            startBtn.onclick =function(){
+                // setTimeout(함수, 시간) : 지정된 시간(ms) 후에 지정한 함수를 1회 실행
+                // 설정된 타이머 작업을 나타내는 고유한 번호를 반환
+                timerId = window.setTimeout( clockwork, 1000);
+                
+                // setInterval(함수, 시간) : 지정된 시간마다 인자로 준 함수를 한번씩 실행
+                // timerId = window.setInterval( clockwork, 1000);
+            };
+
+            stopBtn.onclick =function(){
+                //지정한 번호의 타이머 작업을 취소
+                window.clearTimeout(timerId);
+                // window.clearInterval(timerId);
+            };
+        };
+    </script>
+</head>
+<body>
+    <button id="btn1">창열기</button>
+    <button id="btn2">창변화</button>
+    <button id="btn3">창닫기</button>
+    <input type="text" id="main" />
+    <button id="btn4">이동</button>
+    <button id="startBtn">타이머 시작</button>
+    <button id="stopBtn">타이머 취소</button>
+    <div id="clock" ></div>
+</body>
+</html>

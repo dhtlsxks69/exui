@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS TODO</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+    </style>
+    <script>
+        //현재 window의 문서(링크된 css, js, 이미지파일 ... 포함)의 로드가 완료되어
+        //load 이벤트가 발생하면 실행될 함수를 설정
+        window.onload = function(){
+            var todoIn = document.querySelector('#todo');
+            var addBtn = document.querySelector('#addBtn');
+            var todoUl = document.querySelector('#todoList');
+            var delBtn = document.querySelector('#delBtn');
+            // 1. input 에 할 일을 입력하고 추가 버튼을 클릭하면, 입력한 내용이 할 일 목록(ul)에 추가
+            addBtn.onclick = function(){
+                var todo = todoIn.value;
+                todoUl.innerHTML += '<li>' + todo + '</li>';
+                todoIn.value = '';
+            };
+
+            // 2. 할 일 목록(ul)에 있는 li 들을 클릭할 때마다, 클릭한 엘리먼트에 취소선을 그었다 지웠다 토글
+            todoUl.onclick = function(ev){
+                console.log(ev.target.nodeName);
+                if (ev.target.nodeName === 'LI') {
+                    //자바스크립트에서 CSS 스타일을 직접 설정하기보다는 클래스 사용을 권장
+                    // if (ev.target.classList.contain('done')) {
+                    //     ev.target.classList.remove('done');
+                    // }else{
+                    //     ev.target.classList.add('done');//<li class="done">xxx</li>
+                    // }
+                    ev.target.classList.toggle('done');
+                }
+            };
+
+            // 3. 삭제 버튼을 클릭하면, 취소선이 그어진 li 엘리먼트들을 삭제
+            delBtn.onclick = function(){
+                var donList = document.querySelectorAll('.done');
+                for (var i = 0; i < donList.length; i++) {
+                    var don = donList[i];
+                    don.parentElement.removeChild(don);
+                }
+            };
+        }
+
+    </script>
+</head>
+<body>
+    <h1>할 일 목록</h1>
+    <input type="text" id="todo" /><button id="addBtn">추가</button>
+    <ul id="todoList">
+        <li>할일01</li>
+        <li>할일02</li>
+        <li>할일03</li>
+    </ul>
+    <button id="delBtn">삭제</button>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM EVENT</title>
+    <style>
+        #outbox, #inbox {
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    1. HTML 문서에서 엘리먼트의 onXXX 속성 값에 XXX 이벤트 발생시 실행할 자바스크립트코드를 쓰기
+    2. 자바스크립트에서 엘리먼트의 onXXX 속성에 XXX 이벤트 발생시 실행될 함수를 저장
+    3. 자바스크립트에서 엘리먼트의 addEventListener('이벤트명', 이벤트발생시실행될함수) 메서드 사용
+    
+    버튼1 을 클릭하면 btnClik1 함수를 실행하도록 설정
+    <button id="btn1" onclick="btnClik1();">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">버튼3</button>
+    <button id="btn4">버튼4</button>
+    <button id="btn5">버튼5</button>
+    <hr />
+    <a href="http://google.com/" id="golink">구글로 이동</a>
+    <hr />
+    <form action="https://www.google.co.kr/search" id="myform">
+        검색어 : <input type="text" name="q" />
+        <input type="submit" value="검색" />
+    </form>
+    <div id="outbox">
+        바깥쪽상자
+        <div id="inbox">
+            안쪽상자
+            <button id="mybtn">버튼</button>
+        </div>
+    </div>
+    <script>
+        function btnClik1(){
+            alert("버튼1 클릭!");
+        }
+        function btnClik2(event){
+            // 이벤트 발생시 자동 실행되는 함수에서 this는 이벤트가 발생한 엘리먼트를 의미
+            console.log( this );
+            // 이벤트가 발생하면 자동 실행되는 함수(== 이벤트콜백함수 == 이벤트핸들러 == 이벤트리스너)
+            // 는 실행시 인자로 발생한 이벤트에 대한 정보가 담긴 이벤트 객체가 전달된다
+            console.log( event.currentTarget );//이벤트가 발생한 엘리먼트
+            console.log( event.target );//이벤트가 최초 발생한 엘리먼트
+            alert(this.innerHTML + "클릭!");
+        }
+        function btnClik3(){
+            alert("버튼3 클릭!");
+        }
+        function btnClik4(){
+            alert("버튼3 클릭!");
+        }
+        var btn2 = document.querySelector('#btn2');
+        var btn3 = document.querySelector('#btn3');
+        var btn4 = document.querySelector('#btn4');
+        
+        //버튼2를 클릭하면 btnClik2 함수를 실행하도록 설정
+        btn2.onclick = btnClik2;
+        
+        //버튼3를 클릭하면 btnClik3 함수와 btnClik4 함수를 모두 실행하도록 설정
+        btn3.addEventListener('click', btnClik3);
+        btn3.addEventListener('click', btnClik4);
+
+        //버튼4를 클릭해도 btnClik2 함수를 실행하도록 설정 (클릭한 버튼에 맞는 내용을 출력)
+        btn4.onclick = btnClik2;
+
+        //버튼5를 클릭하면 버튼1,버튼2,버튼3,버튼4 클릭시 실행되도록 설정해 놓았던 함수를 제거
+        btn5.onclick = function(){
+            //onclick 속성에 null 을 저장
+            btn1.onclick = null;
+            btn2.onclick = null;
+            // btn3.onclick = null;
+            btn4.onclick = null;
+            //addEventListener()로 설정한 이벤트 핸들러는 removeEventListener('이벤트명', 이벤트함수) 로 취소
+            btn3.removeEventListener('click', btnClik3);
+            btn3.removeEventListener('click', btnClik4);
+        };
+
+        //구글로 이동 링크를 클릭하면, 정말로 이동할지 물어보고(confirm 사용 가능), 
+        //확인을 선택하면 이동하고, 취소를 선택하면 이동하지 않도록
+        var go = document.querySelector('#golink');
+        go.onclick =function(ev){
+            var ok = confirm('지금 가면 나랑 절말 끗');
+            if (ok === false) { //확인을 누른 경우 == 이동하겠다고 선택한 경우
+                ev.preventDefault();
+            }
+            //해당 이벤트에 대한 브라우저의 기본 동작을 취소하는 방법
+            //1.이벤트 발생시 실행되는 함수에서 false를 반환
+            // return false;
+            //2.인자로 전달된 이벤트 객체의 preventDefault() 메서드 실행
+            // ev.preventDefault();
+        };
+        
+        // 검색 버튼을 클릭하여, 폼을 제출하면(즉, form 엘리먼트에 submit 이벤트가 발생하면)
+        // 검색어가 없으면 검색어를 입력하라는 메시지를 출력하고 제출을 하지 않도록 구현 
+        // (공백만 입력한 경우에도 검색어가 없는 것으로 판단)
+        var myf = document.querySelector('#myform');
+        var qIn = document.querySelector('[name = q]');
+        myf.onsubmit = function() {
+            // if (qIn.value === '') {    검색창에 아무것도 안쳤을 때
+            if (qIn.value.trim() === '') {   //검색창에 공백만 있을 때
+                alert('검색어를 입력하세요');
+                return false;
+            }
+        };
+
+        var outbox = document.querySelector('#outbox');
+        var inbox = document.querySelector('#inbox');
+        var mybtn = document.querySelector('#mybtn');
+        // addEventListener()의 마지막 인자로 true를 주면 해당 이벤트 핸들러는 이벤트캡쳐링 단계에서 실행
+        // addEventListener()의 마지막 인자로 false를 주면 해당 이벤트 핸들러는 이벤트버블링 단계에서 실행
+        // addEventListener()의 마지막 인자를 생략하면 false 
+        // outbox.addEventListener('click', function(){ console.log('outbox 클릭!'); }, true);
+        // inbox.addEventListener('click', function(){ console.log('inbox 클릭!'); }, true);
+        // mybtn.addEventListener('click', function(){ console.log('mybtn 클릭!'); }, true);
+        outbox.addEventListener('click', function(){ 
+            console.log('outbox 클릭!'); 
+        });
+        inbox.addEventListener('click', function(ev){ 
+            console.log('inbox 클릭!'); 
+            console.log('target : ', ev.target);  //최초발생
+            console.log('currentTarget : ', ev.currentTarget);  //누구때문에 실행되고 있냐 
+            // ev.stopPropagation(); //이벤트를 부모엘리먼트로 전달(버블링)하는 것을 중단
+            ev.stopImmediatePropagation(); //현재 엘리먼트에 설정된 다른 이벤트핸들러의 실행도 중단
+        });
+        inbox.addEventListener('click', function(ev){ 
+            console.log('inbox 클릭22!'); 
+        });
+        mybtn.addEventListener('click', function(){ 
+            console.log('mybtn 클릭!'); 
+        });
+    </script>
+</body>
+</html>
