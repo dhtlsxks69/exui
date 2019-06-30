@@ -9,12 +9,28 @@
         table {
             border-spacing: 0px;
             border-collapse: collapse;
+            width: 1080px;
+            margin: 0px auto;
+        }
+        select {
+            width: 80px;
+            margin-left: 1180px;
+        }
+        #List {
+            margin-left: 1380px;
         }
     </style>
 </head>
 <body>
     <table border="1">
-        <caption>성적표</caption>
+        <select id="sel">
+            <option value="1">전체</option>
+            <option value="2">제목</option>
+            <option value="3">내용</option>
+            <option value="4">작성자</option>    
+        </select>
+        <input type="text" id="do"/>
+        <button id="Btn">검색</button>
         <thead>
             <tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회</th></tr>
         </thead>
@@ -27,8 +43,8 @@
         <tfoot>    
             <tr><td>평균</td><td>85</td><td>B</td><td>92</td><td>92</td></tr>
         </tfoot>
-    </table>
-
+    </table><br>
+    <button id="List">목록</button> <button id="write">글쓰기</button> <br>
     <a href="exhtml02.html">exhtml02.html로 이동</a> <br>
     <a href="exhtml02.html" target="_self">exhtml02.html로 이동(self 프레임안에서 바뀜)</a> <br>
     <a href="exhtml02.html" target="_parent">exhtml02.html로 이동(parent 부모창이 바뀜)</a> <br>
