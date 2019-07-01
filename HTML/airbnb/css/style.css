@@ -1,0 +1,229 @@
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    padding:30px 0 0 30px;
+}
+
+.menu{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: space-around;
+    
+}
+
+.menu li {
+    padding: 0 15px;
+    list-style-type: none;
+    font-size: 13px;
+}
+
+.menu a {
+    text-decoration: none;
+    color:white;
+}
+
+.logo {
+    font-size: 30px;
+    color:white;
+}
+
+header {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 690px;
+    width:100%;
+}
+
+.title {
+    padding:2% 6%;
+    font-size:45px;
+    color:white;
+    font-weight: 800;
+}
+
+
+.sec-container {
+    width:950px;
+    margin: 0 auto;
+    
+}
+
+.sec-container a {
+    text-decoration: none;
+    color:white;
+    font-size: 17px;
+    font-weight: 600;
+    margin:20px;
+    
+}
+
+.sec-container ul {
+    list-style-type: none;
+    display:grid;
+    grid-template-columns: 110px 110px 110px 110px;
+    padding: 10px 0;
+}
+
+.sub-form {
+    display: grid;
+    grid-template-columns: 9fr 5fr 5fr 2fr;
+}
+
+.sub-form input{
+    padding:10px;
+    margin:20px 0;
+    width:100%;
+    height:65px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sub-form div:nth-child(1) input[type=text]{
+    padding-left: 50px;
+    background-image: url("../images/search.png");
+    background-repeat: no-repeat;
+    background-position: 10px 15px;
+    background-size: 30px;
+
+}
+
+.sub-form button {
+    margin:20px 10px;
+    width:70px;
+    height:65px;  
+}
+
+main section {
+    margin: 50px 0;
+}
+
+.category {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    height:60px;
+    border: 1px solid gray;
+    overflow: hidden;
+}
+
+.category-box {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-gap: 20px;
+    margin:20px 0;
+}
+
+.category div {
+    height:60px;
+}
+
+.category div:nth-child(2){
+    display: grid;
+    align-items: center;
+    padding:0 12px;
+}
+
+.category-img {
+    background-image: url("https://a0.muscache.com/im/pictures/8b7519ec-2c82-4c09-8233-fd4d2715bbf9.jpg?aki_policy=large");
+    background-size: 100% 100%;
+}
+
+.sec-title {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.category2-img {
+    background-image: url("https://a0.muscache.com/im/pictures/ffedf2df-8778-46f8-af67-821d6f75636b.jpg?aki_policy=large");
+    background-size: cover;
+    height:200px;
+}
+
+.category2-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    margin:20px 0;
+}
+
+.category3-img {
+    background-image: url("https://a0.muscache.com/pictures/74f162be-e062-489a-bf74-16194efdeff9.jpg");
+    background-size: cover;
+    height:270px;
+    margin:20px 0;
+}
+
+.category3-img div:nth-child(1){
+    font-size:30px;
+    font-weight: 600;
+    color:white;
+    padding:70px 0 0 30px;
+}
+
+.category3-img div:nth-child(2){
+    border-radius: 10px;
+    margin:30px 30px;
+    padding:10px 0;
+    font-size:12px;
+    font-weight: 400;
+    color:white;
+    border: 1px solid white;
+    display: inline-block;
+}
+
+.category4-img {
+    width: 100%; 
+    height: 150px; 
+    background-image: url("https://a0.muscache.com/im/pictures/753aa80b-7a72-4899-a7a2-c627fdf3d3a1.jpg?aki_policy=large");
+    background-size: cover;
+}
+
+.category4-grid {
+    margin:30px 0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.category4-link {
+    color:#008489;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.text {
+    font-weight: 600;
+    font-size: 12px;  
+}
+
+.category4-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.sub-form button {
+    background-color: rgb(223, 84, 84);
+    color:white;
+    border-radius: 10px;
+    border:1px solid rgb(223, 84, 84);
+}
+
+.sub-menu li a:hover {
+    padding-bottom: 10px;
+    border-bottom: 5px solid white;
+    
+}
+
+.menu li a:hover {
+    padding-bottom: 10px;
+    border-bottom: 5px solid white;
+}
+
