@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ SELECTOR</title>
+    <style>
+        #d2 {
+            visibility: hidden;
+        }
+        #d3 {
+            display: none;
+        }
+        input[type="image"] {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        $(function() {
+            // $('li[id!="pig"]').css('border', '1px solid red');
+            // $('li:not([id="pig"])').css('border', '1px solid red');
+            
+            // $('h1,h2,h3,h4,h5,h6').css('border', '1px solid red');
+            // $(':header').css('border', '1px solid red');
+            
+            // :eq(n) : 선택된 엘리먼트들 중 n번(index) 엘리먼트
+            // $('li:eq(2)').css('border', '1px solid red');
+            // $('li:gt(2)').css('border', '1px solid red');
+            // $('li:lt(2)').css('border', '1px solid red');
+            // $('li:first').css('border', '1px solid red'); //== $('li:eq(0)')
+            // $('li:last').css('border', '1px solid red'); //== $('li:eq(-1)')
+            // $('li:even').css('border', '1px solid red'); //짝수번
+            // $('li:odd').css('border', '1px solid red'); //홀수번
+            
+            // :contains("xx") 엘리먼트의 내용 중에 "xx" 문자열이 포함된 엘리먼트 선택
+            // $('li:contains("리")').css('border', '1px solid red'); 
+            // :empty 내용 문자열 또는 자식 엘리먼트가 없는 엘리먼트
+            // $('li:empty').css('border', '1px solid red'); 
+            // :parent 내용 문자열 또는 자식 엘리먼트가 있는 엘리먼트
+            // $('li:parent').css('border', '1px solid red'); 
+            // :has("선택자") 지정한 선택자에 맞는 엘리먼트를 자손으로 포함한 엘리먼트를 선택
+            // $(':has("li")').css('border', '1px solid red'); 
+
+            // console.log( '보이는 div', $('div:visible').length );
+            // console.log( '안 보이는 div', $('div:hidden').length );
+            // console.log( $('div:hidden').get(0).innerHTML );
+            
+            //모든 입력 엘리먼트들(input,select,textarea,..)
+            // $(':input').css('border', '1px solid red'); 
+            // $(':input+label').css('border', '1px solid red'); 
+            //input 엘리먼트의 type 속성값에 기반하여 선택
+            // $(':text').css('border', '1px solid red'); //==$('input[type="text"]')
+            // $(':password').css('border', '1px solid red'); //==$('input[type="password"]')
+            // $(':radio + label').css('border', '1px solid red'); //==$('input[type="radio"]')
+            // $(':checkbox + label').css('border', '1px solid red'); //==$('input[type="checkbox"]')
+            // $(':reset').css('border', '1px solid red'); //==$('input[type="reset"]')
+            // $(':submit').css('border', '1px solid red'); //==$('input[type="submit"]')
+            // $(':button').css('border', '1px solid red'); //==$('input[type="button"]')
+            // $(':file').css('border', '1px solid red'); //==$('input[type="file"]')
+            // $(':image').css('border', '1px solid red'); //==$('input[type="image"]')
+
+            //활성화된 혹은 비활성화된 입력 엘리먼트들
+            // $(':enabled').css('border', '1px solid red'); // $('input:not([disabled])')
+            // $(':disabled').css('border', '1px solid red'); //==$('[disabled]')
+
+            //선택된 radio, checkbox, option 엘리먼트
+            // $(':checked, :checked+label').css('color', 'red'); 
+            //선택된 option 엘리먼트
+            $(':selected, :selected+label').css('color', 'red'); 
+
+        });
+    </script>
+</head>
+<body>
+    <form action="text.html">
+        이름 <input type="text" name="nick" value="abc" disabled /> <br />
+        암호 <input type="password" name="pwd" /> <br />
+        성별 <input type="radio" name="gender" value="male" id="gen1" /><label for="gen1">남성</label>  
+            <input type="radio" name="gender" value="female" id="gen2" /><label for="gen2">여성</label>  
+            <input type="radio" name="gender" value="etc" checked="checked" id="gen3" /><label for="gen3">기타</label>
+        <br />
+        음식 <input type="checkbox" name="food" value="berry" checked="checked" id="food1" /><label for="food1">딸기</label>
+            <input type="checkbox" name="food" value="melon" id="food2" /><label for="food2">수박</label>
+            <input type="checkbox" name="food" value="orange" checked="checked" id="food3"/><label for="food3">귤</label>
+        <br />
+        <textarea name="memo" id="" cols="40" rows="5">기본 입력 내용...</textarea>
+        <br />
+        <select name="drink">
+            <option value="juice">쥬스</option>
+            <option value="coffee">커피</option>
+            <option value="tea" selected="selected" >차</option>
+        </select>
+        <br />
+        <input type="submit" />
+        <input type="reset" value="리셋" />
+        <input type="button" value="그냥버튼" />
+        <input type="file" value="파일선택" />
+        <input type="image" src="./img/004-ball.png" />
+    </form>
+    <div id="d1">보이는 div</div>
+    <div id="d2">안 보이는 div : visibility</div>
+    <div id="d3">안 보이는 div : display</div>
+    <ul>
+        <li>개</li>
+        <li id="pig">돼지</li>
+        <li>코끼리</li>
+        <li>고양이</li>
+        <li>오리</li>
+        <li></li>
+    </ul>
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+</body>
+</html>

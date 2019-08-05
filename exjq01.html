@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ INTRO</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./img/car1.png" alt="차" />
+        <img src="./img/car1.png" alt="차" />
+        <img src="./img/car1.png" alt="차" />
+    </div>
+    <div>
+        <button type="button">버튼</button>
+        <button type="button">버튼</button>
+        <button type="button">버튼</button>
+    </div>
+    <script src="myquery.js"></script>
+    <script>
+        // 어떤 버튼이라도 클릭하면, 모든 이미지를 ./img/car2.png 파일로 변경./img/car1.png
+        // var btnList = document.querySelectorAll('button');
+        // for (var i = 0; i < btnList.length; i++) {
+        //     var btnElm = btnList[i];
+        //     btnElm.onclick = function () {
+        //         var imgList = document.querySelectorAll('img');
+        //         for (var i = 0; i < imgList.length; i++) {
+        //             var imgElm = imgList[i];
+        //             imgElm.src = './img/car2.png';
+        //         }
+        //     };
+        // }
+
+        // var imgObj = myQuery('img');
+        // imgObj.prop('src', './img/car2.png');
+        $('button').prop('onclick', function(){
+            $('img').prop('src', './img/car2.png');
+        });
+    </script>
+</body>
+
+</html>

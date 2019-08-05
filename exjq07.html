@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>JQ EVENT</title>
+   <script src="jquery-3.4.1.js"></script>
+   <script>
+      $(function() {
+         
+         $('#btn1').on('click', function () {
+            // "버튼01(클릭된 엘리먼트의 내용) 클릭!" 이라는 메시지 출력
+            // alert(this.innerHTML+'클릭!');
+            alert($(this).html()+'클릭!');
+         });
+         $('#btn2').on('click', function () {
+            // btn1의 모든 click 이벤트 리스너를 취소(제거)
+            $('#btn1').off('click');
+            // btn5의 click 이벤트 리스너 중 sayBye 함수를 취소(제거)
+            $('#btn5').off('click', sayBye);
+         });
+         $('#btn3').on('click', function () {
+            // btn1에 click 이벤트 강제 발생
+            $('#btn1').trigger('click');
+         });
+         // btn4 를 처음 클릭했을 때 한번만 '버튼04 클릭!' 라고 출력
+         $('#btn4').one('click', function(){
+            alert($(this).html()+'클릭!');
+            // $('#btn4').off('click');
+         });
+
+         // btn5 를 클릭하면, sayHello(), sayBye() 모두 실행
+         function sayHello() {
+            alert('hello!');
+         }
+         function sayBye() {
+            alert('Bye!');
+         }
+         $('#btn5').on('click', sayHello);
+         $('#btn5').on('click', sayBye);
+
+         // 이벤트 발생시 실행되는 함수에는 발생한 이벤트에 대한 모든 정보가 담긴 이벤트 객체를 인자로 전달된다
+         $('#link').on('click', function (ev) {
+            alert('링크 클릭!');
+            // 해당 이벤트에 대한 브라우저의 기본 동작 취소
+            //   ev.preventDefault();
+            //   return false; //== ev.preventDefault() + ev.stopPropagation()
+         });
+         $('#linkdiv').on('click', function (ev) {
+            alert('링크 DIV 클릭!');
+         });
+
+         $('#btn6').on('click', function (ev) {
+            // document.querySelector('#link').click();
+            // $('#link').trigger('click');
+            // $('#link').triggerHandler('click'); 
+            //이벤트 발생 없이 해당 이벤트 리스너(핸들러) 함수만 실행
+         });
+
+         // 1. '버튼 추가' 버튼을 클릭할 때마다, id가 btndiv인 엘리먼트 내부에 
+         //    '추가 버튼'이라는 내용을 가진 button 엘리먼트를 하나씩 추가
+         $('#btn7').on('click', function(){
+            $('#btndiv').html('버튼추가').replaceAll('#btndiv');
+         });
+         // 2. id가 btndiv인 엘리먼트 내부에 있는 button 엘리먼트를 클릭하면, 
+         //    '추가 버튼 클릭!'이라는 메시지를 출력
+         
+
+         // $('선택자1').on('이벤트명', '선택자2', 이벤트핸들러함수);
+         // '선택자1'에 맞는 엘리먼트의 내부에 있는 '선택자2'에 맞는 엘리먼트에 
+         // 이벤트가 발생하면 (그 선택자2 엘리먼트를 this로) 이벤트 핸들러 함수를 실행
+
+
+         // [참고] jQuery 구버전에서 사용하던 이벤트 핸들러 설정 메서드
+         //    .bind(), .unbind() : 현재 문서에 존재하는 엘리먼트에 이벤트핸들러 설정 및 해제
+         //    .live(), .die() : 현재 문서에 존재하지 않는 엘리먼트에 이벤트핸들러 설정 및 해제
+         //    .delegate(), .undelegate() : 현재 문서에 존재하지 않는 엘리먼트에 이벤트핸들러 설정 및 해제
+         // 근래의 jQuery 버전에서는 .on(), .off() 로 통합
+      })
+   </script>
+</head>
+<body>
+   <button id="btn1">버튼01</button>
+   <button id="btn2">클릭 이벤트 리스너 취소</button>
+   <button id="btn3">버튼01 클릭</button>
+   <button id="btn4">버튼04 한번만</button>
+   <button id="btn5">버튼05</button>
+   <div id="linkdiv">
+      <a href="http://jquery.com/" id="link">이동 링크</a>
+   </div>
+   <button id="btn6">링크 클릭</button>
+   <button id="btn7">버튼 추가</button>
+   <div id="btndiv"></div>
+</body>
+</html>

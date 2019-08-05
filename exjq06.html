@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ FILTERING and TRAVERSING</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            //    $('li').css('border', '2px solid red');
+            //filtering
+            //선택된 엘리먼트들 중 지정한 조건에 맞거나 맞지 않는 엘리먼트들만 다시 선택
+            //    $('li').filter('.like').css('border', '2px solid red'); //==$('li.like')
+            //    $('li').not('.like').css('border', '2px solid red'); //==$('li:not(.like)')
+            //선택된 엘리먼트들 중 지정한 인덱스(순번)의 엘리먼트들만 다시 선택
+            //    $('li').eq(2).css('border', '2px solid red'); //==$('li:eq(2)')
+            //    $('li').first().css('border', '2px solid red'); //==$('li:eq(0)')
+            //    $('li').last().css('border', '2px solid red'); //==$('li:eq(-1)')
+            //    $('li').slice(2,7).css('border', '2px solid red'); //2번부터 7번전까지
+            //    $('li').slice(2).css('border', '2px solid red'); //2번부터 끝까지
+            //지정한 조건에 맞는 자손엘리먼트를 가진 엘리먼트만 다시 선택
+            //    $('div').has('#drinkList').css('border', '2px solid red'); 
+            //선택된 엘리먼트들 중 지정한 조건에 맞는 엘리먼트가 하나라도 있는지 여부 확인
+            // console.log($('li').is('.like')) );
+
+            // Traversing
+            // 선택된 엘리먼트들의 조상, 자손, 형제 엘리먼트들을 선택
+            // 인자로 선택자를 지정하면, 그 선택자에 맞는 엘리먼트들만 선택
+            //    $('#div1').find('.like').css('border', '2px solid red'); //==$('#div1 .like')==$('.like','#div1')
+            //    $('#div1').children('.like').css('border', '2px solid red'); //==$('#div1 > .like')
+            //    $('#foodList').children('.like').css('border', '2px solid red'); //==$('#div1 > .like')
+            //    $('#foodList>.like').parent().css('border', '2px solid red'); //직속 부모 엘리먼트
+            //    $('#foodList>.like').parent('ul').css('border', '2px solid red'); //직속 부모 엘리먼트
+            //    $('#foodList>.like').parents().css('border', '2px solid red'); //조상 엘리먼트
+            //    $('#foodList>.like').parents('div').css('border', '2px solid red'); //조상 엘리먼트
+            //    $('#foodList>.like').parentsUntil('div').css('border', '2px solid red'); // 조건에 맞는 첫번째 조상엘리먼트가 나오기 전까지의 모든 조상 엘리먼트들
+            //    $('#foodList>.like').closest('div').css('border', '2px solid red'); // 조건에 맞는 첫번째(==가장 가까운) 조상엘리먼트 
+
+            //    $('#foodList>.like').siblings().css('border', '2px solid red'); //형제 엘리먼트들
+            //    $('#foodList').siblings('ul').css('border', '2px solid red'); //형제 엘리먼트들
+            //    $('.like').prev().css('border', '2px solid red'); //직전 형제 엘리먼트들
+            //    $('.like').prevAll().css('border', '2px solid red'); //이전의 모든 형제 엘리먼트들
+            //    $('.like').prevUntil('.best').css('border', '2px solid red'); //이전의 모든 형제 엘리먼트들
+            //    $('.like').next().css('border', '2px solid red'); //직후 형제 엘리먼트들
+            //    $('.like').nextAll().css('border', '2px solid red'); //이후의 모든 형제 엘리먼트들
+            //    $('.best').nextUntil('.like').css('border', '2px solid red'); //이전의 모든 형제 엘리먼트들
+
+            
+            // 모든 li에 경계선 출력,
+            // like 클래스에 속하는 li들은 배경을 yellow,
+            // like 클래스에 속하지 않는 li들은 배경을 blue,
+            // best 클래스에 속하는 li들은 글자를 red
+            // $('li').css('border', '1px solid black')
+            // .filter('.like').css('background-color', 'yellow')
+            // .end() //필터링 메서드를 사용하기 직전에 선택된 엘리먼트를 담고 있는 상태로 돌아가기
+            // .not('.like').css('background-color', '#435DF3')
+            // .end()
+            // .filter('.best').css('color', 'red');
+            
+
+            //선택된 엘리먼트에 지정한 조건에 맞는 엘리먼트들을 더 추가
+            // $('.like').add('.best').css('border', '2px solid red'); //$('.like, .best')
+
+            // li 엘리먼트를 클릭하면, 
+            // 클릭한 li의 배경색을 red로, 클릭한 li의 앞뒤에 있는 li의 배경색을 노란색으로
+            // 클릭한 li를 담고 있는 ul의 경계선(테두리)를 1px solid black 으로 설정
+            $('li').on('click', function(){
+                $('ul, li').removeClass('active adj');
+                // 이벤트 발생시 살행되는 함수 안에서 this는 이벤트가 발생한 엘리먼트 객체
+                $(this).addClass('active')
+                .next().addClass('adj')
+                .end().prev().addClass('adj')
+                .end().parent('ul').addClass('active');
+            });
+        });
+    </script>
+    <style>
+        li.active {
+            background-color: red;
+        }
+        li.adj {
+            background-color: yellow;
+        }
+        ul.active {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>목록들</h1>
+        <div id="div1">
+            <h2>음식목록</h2>
+            <ul id="foodList">
+                <li class="best">피자</li>
+                <li>스파게티</li>
+                <li class="like">도리아</li>
+                <li>돈까스</li>
+                <li>함박스테이크</li>
+            </ul>
+            <h2>과일목록</h2>
+            <ul id="fruitList">
+                <li>딸기</li>
+                <li>수박</li>
+                <li class="best like">복숭아</li>
+                <li>귤</li>
+                <li>키위</li>
+            </ul>
+        </div>
+        <div id="div2">
+            <h2>음료목록</h2>
+            <ul id="drinkList">
+                <li>콜라</li>
+                <li>사이다</li>
+                <li class="like">환타</li>
+                <li>쥬스</li>
+                <li>커피</li>
+            </ul>
+        </div>
+        <div>
+</body>
+</html>

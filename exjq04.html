@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+   <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ ATTR PROP</title>
+    <style>
+        .pick {
+            background-color: yellow;
+        }
+    </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+
+            // jQuery에서는 속성값을 읽어오는(getter) 메서드와 저장하는(setter) 메서드가 동일
+            //  : 인자로 값을 주지 않으면 getter, 값을 주면 setter로 작동
+            //  : getter는 선택된 엘리먼트들 중 첫번째 엘리먼트의 값만 반환
+            //  : setter는 선택된 모든 엘리먼트들의 값을 변경
+
+            // 속성값 읽기 : .prop('속성명') , .attr('속성명')
+            // console.log( document.querySelector('a').getAttribute('href') );
+            // console.log($('a').attr('href'));
+            // console.log( document.querySelector('a').href );
+            // console.log($('a').prop('href'));
+            
+            // 속성값 설정(저장) : .prop('속성명','속성값') , .attr('속성명','속성값')
+            // var alist = document.querySelectorAll('a');
+            // for (var i = 0; i < alist.length; i++) alist[i].setAttribute('href', 'http://jquery.com/');
+            // $('a').attr('href', 'http://jquery.com');
+            // for (var i = 0; i < alist.length; i++) alist[i].href = 'http://jquery.com/';
+            // $('a').prop('href', 'http://jquery.com');
+
+            // console.log( $('#dog').attr('class') );
+            // console.log( $('#dog').prop('class') );
+            // console.log( $('#dog').attr('className') );
+            // console.log( $('#dog').prop('className') );
+            // console.log( $('#food1').attr('checked') );
+            // console.log( $('#food1').prop('checked') );
+
+            // 클래스 속성값 변경 메서드들
+            // id가 pig인 엘리먼트에 pick 클래스 추가 
+            // $('#pig').addClass('pick'); //공백으로 구분하여 여러개의 클래스 지정 가능
+            // // id가 dog인 엘리먼트에 pick 클래스 제거 
+            // $('#dog').removeClass('pick');
+            // // li 엘리먼트들에 pick 클래스가 있으면 제거, 없으면 추가
+            // $('li').toggleClass('pick');
+            // // 클래스가 있는지 없는지 확인
+            // console.log('개가 pick 클래스 포함 : ' + $('#dog').hasClass('pick') );
+            // console.log('돼지가 pick 클래스 포함 : ' + $('#pig').hasClass('pick') );
+
+            // 스타일 속성값 읽기
+            // console.log( $('a').css('color') ); 
+            // 스타일 속성값 변경
+            // 스타일속성명은 (-를 사용하는) css방식과 (낙타표기법을 사용하는) js 방식 모두 사용 가능
+            // a 엘리먼트의 경계선을 검정색 실선으로, 글자색을 red, 배경색으로 yellow로
+            // $('a').css('border', '1px solid black');
+            // $('a').css('color', 'red');
+            // $('a').css('background-color', 'yellow');
+            // $('a').css('backgroundColor', 'yellow');
+            // var $a = $('a');
+            // $a.css('border', '1px solid black');
+            // $a.css('color', 'red');
+            // $a.css('background-color', 'yellow');
+
+            // attr(), prop(), css() 모두 다양한 속성을 한번에 설정하기 위해서 
+            // 여러 속성을 하나의 객체에 담아서 설정 가능
+            // $('a').css({'border': '1px solid black', 'color': 'red', 'background-color': 'yellow'});
+            // $('a').css({border: '1px solid black', color: 'red', backgroundColor: 'yellow'});
+
+            // value 속성값 읽기
+            // name이 "drink"인 엘리먼트의 value 속성값 출력
+            // var v = $('[name="drink"]').attr('value'); // X
+            // var v = $('[name="drink"]').prop('value'); // O
+            // var v = $('[name="drink"]').val(); // O
+            // console.log(v);
+
+            // value 속성값 설정
+            // name이 "drink"인 엘리먼트의 value 속성값을 juice로 설정
+            // $('[name="drink"]').prop('value', 'juice');
+            // $('[name="drink"]').val('juice');
+
+            // a 엘리먼트의 id를 'link'으로, class를 'active'로, href를 'http://naver.com/'로 설정
+            // $('a').prop('id', 'link');
+            // $('a').prop('class', 'active');
+            // $('a').prop('href', 'http://naver.com');
+            // $('a').prop({'id': 'link', 'class': 'active','href': 'http://naver.com'});
+            
+            // jQuery 메서드 체이닝
+            // 값을 설정(변경)하는 메서드들은 현재 jQuery 객체를 반환하도록 구현되어 있으므로, 연쇄적인 호출이 가능
+            // $('a').prop('id', 'link').prop('calss', 'active').prop('href', 'http://naver.com');
+            $('a').attr('id', 'link').addClass('active').prop('href', 'http://naver.com');
+            
+            
+            // a 엘리먼트의 id를 문서에 나온 순서에 따라서 'link-0', 'link-1', 'link-2'으로 설정
+            // 속성값으로 함수를 주면, 
+            // 선택된 엘리먼트마다 각각 한번씩 그 함수를 실행시키면서, 실행 결과 반환된 값을 새로운 속성값으로 설정
+            $('a').attr('id', function(idx, att) {
+                //  해당 엘리먼트가 몇번 엘리먼트인지와 해당 엘리먼트의 원래 속성값이 인자로 전달되고,
+                // 함수 내부에서 this로 현재 엘리먼트 사용 가능
+                console.log(idx, att, this.id); // att === this.id
+                return att + '-' + idx;
+            });
+
+            // 이벤트 처리 메서드 : .on('이벤트명', 이벤트발생시실행될함수 )
+            // li 엘리먼트를 click 하면, '리스트 아이템 클릭!' 라고 출력
+            $('li').on('click', function(){alert('리스트 아이템 클릭!');});
+            
+            // 엘리먼트의 내용을 다루는 메서드
+            // ul 엘리먼트의 내용을 출력
+            // console.log( document.querySelector('ul').innerHTML );
+            console.log($('ul').html());
+            // console.log( document.querySelector('ul').textContent );
+            console.log($('ul').text());
+            // id가 dog 인 엘리먼트의 내용을 '<a href="https://wikipedia.org/wiki/Puppy">강아지</a>' 로 변경
+            // $('#dog').html('<a href="https://wikipedia.org/wiki/Puppy">강아지</a>');
+            // $('#dog').text('<a href="https://wikipedia.org/wiki/Puppy">강아지</a>');
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <a href="http://daum.net/">다음으로 이동</a>
+        <a href="http://google.com/">구글로 이동</a>
+    </div>
+    <ul>
+        <li id="dog" class="pick">개</li>
+        <li id="pig">돼지</li>
+        <li>코끼리</li>
+        <li>고양이</li>
+        <li>오리</li>
+        <li></li>
+    </ul>
+    <form action="text.html">
+        이름 <input type="text" name="nick" value="abc" /> <br />
+        암호 <input type="password" name="pwd" /> <br />
+        성별 <input type="radio" name="gender" value="male" id="gen1" /><label for="gen1">남성</label>  
+            <input type="radio" name="gender" value="female" id="gen2" /><label for="gen2">여성</label>  
+            <input type="radio" name="gender" value="etc" checked="checked" id="gen3" /><label for="gen3">기타</label>
+        <br />
+        음식 <input type="checkbox" name="food" value="berry" checked="checked" id="food1" /><label for="food1">딸기</label>
+            <input type="checkbox" name="food" value="melon" id="food2" /><label for="food2">수박</label>
+            <input type="checkbox" name="food" value="orange" checked="checked" id="food3"/><label for="food3">귤</label>
+        <br />
+        <textarea name="memo" id="" cols="40" rows="5">기본 입력 내용...</textarea>
+        <br />
+        <select name="drink">
+            <option value="juice">쥬스</option>
+            <option value="coffee">커피</option>
+            <option value="tea" selected="selected" >차</option>
+        </select>
+        <br />
+        <input type="submit" />
+        <input type="reset" value="리셋" />
+        <input type="button" value="그냥버튼" />
+        <input type="file" value="파일선택" />
+    </form>
+</body>
+</html>

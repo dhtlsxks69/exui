@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ DOM Manipulating</title>
+    <style>
+        #mydiv {
+            border: 1px solid black;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+        // $('<xxx>') : 태그 이름이 'xxx'인 엘리먼트를 생성 <xxx></xxx>
+        // <img src="car4.png" /> 엘리먼트 생성
+        // var $newImg = $('<img>'); //<img src="./img/car4.png" />
+        // $newImg.attr('src', './img/car4.png');
+        
+        // $('#mydiv').append( $newImg ); //#mydiv의 내용의 맨 마지막에 $newImg를 추가
+        // $('#mydiv').prepend( $newImg ); //#mydiv의 내용의 맨 앞에 $newImg를 추가
+        // $('#mydiv').before( $newImg ); //#mydiv의 앞에 (형제엘리먼트로) $newImg를 추가
+        // $('#mydiv').after( $newImg ); //#mydiv의 뒤에 (형제엘리먼트로) $newImg를 추가
+
+        // 인자로 텍스트문자열, html문자열, 엘리먼트DOM객체, jQuery객체 모두 가능
+        // $('#mydiv').append( $newImg );
+        // $('#mydiv').append( '<img src="./img/004-ball.png" />' );
+
+        // $newImg.appendTo( '#mydiv' ); //#mydiv의 내용의 맨 마지막에 $newImg를 추가
+        // $newImg.prependTo( '#mydiv' ); //#mydiv의 내용의 맨 앞에 $newImg를 추가
+        // $newImg.insertBefore( '#mydiv' ); //#mydiv의 앞에 (형제엘리먼트로) $newImg를 추가
+        // $newImg.insertAfter( '#mydiv' ); //#mydiv의 뒤에 (형제엘리먼트로) $newImg를 추가
+
+        // 인자로는 선택자문자열, 엘리먼트DOM객체, jQuery객체 모두 가능
+        // $newImg.appendTo( '#mydiv' ); 
+        // $newImg.appendTo( document.querySelector('#mydiv') ); 
+        // $newImg.appendTo( $('#mydiv') ); 
+
+        // $('#mydiv').remove(); //선택된 엘리먼트를 제거(삭제)
+        // $('#mydiv').empty(); //선택된 엘리먼트의 내용을 제거(삭제)
+
+        // id가 link2 인 엘리먼트와 동일한 속성을 가진 새로운 엘리먼트 생성하여 추가
+        // $('<a>').attr('href', $('#link2').attr('href')).html($('#link2').html()).appendTo('body');
+        $('#link2').clone().appendTo('body');
+        
+        // $('a').wrap('<div></div>'); //선택된 엘리먼트들 각각을 <div></div>로 감싸기 
+        // $('a').wrapAll('<div></div>'); //선택된 엘리먼트 전체를 하나의 <div></div>로 감싸기 
+        // $('a').wrapInner('<div></div>'); //선택된 엘리먼트들 각각의 내용을 <div></div>로 감싸기 
+        // $('img').unwrap(); //선택된 엘리먼트의 부모 엘리먼트를 제거
+
+        //기존 엘리먼트를 새 엘리먼트로 교체 (삭제 + 추가)    
+        // $('<a>').html('새로운 링크').replaceAll('#link2');
+        // $('<a>').html('새로운 링크').replaceAll('a'); //문서의 모든 a를 새로만든 엘리먼트로 교체
+        // $('#link2').replaceWith( '<a>새로운 링크</a>' );
+        // $('#link2').replaceWith( $('<a>').html('새로운 링크') );
+
+        // var $link = $('#link2').detach(); //선택된 엘리먼트를 문서로부터 분리시켜서 보관
+        // $link.prependTo('#mydiv');
+        });
+    </script>
+</head>
+<body>
+    <div id="mydiv">
+        <a href="http://daum.net/">다음으로 이동</a>
+        <a href="http://google.com/" id="link2" >구글로 이동</a>
+    </div>
+
+</body>
+</html>

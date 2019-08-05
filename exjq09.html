@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ ANIMATION</title>
+    <style>
+        .box {
+            border: 2px solid black;
+        }
+        #inbox {
+            background-color: tomato;
+            width: 200px;
+            height: 200px;
+        }
+        #outbox {
+            padding: 50px;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        $(function() {
+           $('#btn01').on('click', function() {
+            //   $('#inbox').hide(); //엘리먼트 감추기
+            //   $('#inbox').hide(1000); //감추는 시간을 ms로 지정 가능
+            //   $('#inbox').hide('slow'); // 문자열 'slow'(600ms), 'fast'(200ms)로도 지정 가능
+              $('#inbox').hide(1000, function() {
+                  alert('감추기 완료!');
+              }); //효과(애니메이션) 종료 후 실행될 함수 설정 가능
+           });
+           $('#btn02').on('click', function() {
+              $('#inbox').show(); //엘리먼트 보이기
+           });
+           $('#btn03').on('click', function() {
+              $('#inbox').toggle(); //엘리먼트 감췄다 보였다
+           });
+           $('#btn04').on('click', function() {
+              $('#inbox').fadeOut(3000); //서서히 안보이게(투명하게)
+           });
+           $('#btn05').on('click', function() {
+              $('#inbox').fadeIn(3000); //서서히 보이게(불투명하게)
+           });
+           $('#btn06').on('click', function() {
+              $('#inbox').fadeToggle(3000); //서서히 안보였다 보였다
+           });
+           $('#btn07').on('click', function() {
+              $('#inbox').fadeTo(3000, 0.5); //원하는 투명도 지정 가능(0~1.0)
+           });
+           $('#btn08').on('click', function() {
+              $('#inbox').slideUp(3000); //미끄러져 올라가기
+           });
+           $('#btn09').on('click', function() {
+              $('#inbox').slideDown(3000); //미끄러져 내려오기
+           });
+           $('#btn10').on('click', function() {
+              $('#inbox').slideToggle(3000); //미끄러져 올라갔다 내려갔다
+           });
+           $('#btn11').on('click', function() {
+              //변경할 CSS 속성명:속성값을 담은 객체를 첫번째 인자로 전달
+              // 속성값이 숫자인 CSS 스타일 속성들 사용 가능 (단위: px, em, % 사용 가능)
+              $('#inbox').animate( { width: '100%', fontSize: '10em', borderWidth: '10px' }, 3000 ); 
+           });
+           $('#btn12').on('click', function() {
+              $('#inbox')
+              .animate( { width: '100%' }, 3000 ) 
+              .delay( 2000 ) //아무일도 하지 않고 시간 지연
+              .animate( { fontSize: '10em' }, 3000 ) 
+              .delay( 2000 ) //아무일도 하지 않고 시간 지연
+              .animate( { borderWidth: '10px' }, 3000 );
+           });
+           $('#btn13').on('click', function() {
+              $('#inbox').css( { width: '', fontSize: '', borderWidth: '' } ); 
+           });
+           $('#btn14').on('click', function() {
+               //애니메이션(효과)를 모두 적용시킨 최종 상태로 곧바로 이동
+              $('#inbox').finish();
+           });
+           $('#btn15').on('click', function() {
+            //   $('#inbox').stop();//현재 실행 중인 애니메이션(효과)만 정지(중단)
+              $('#inbox').stop(true);//앞으로 실행할 (예약된) 애니메이션(효과)까지 취소
+           });
+           $('#btn16').on('click', function() {
+              $('#inbox').clearQueue();//앞으로 실행할 (예약된) 애니메이션(효과)만 취소
+           });
+
+           $('#btn17').on('click', function() {
+                var v = $('#num').val();
+                //엘리먼트에 지정한 이름으로 큐(함수배열)을 생성하여 함수를 저장하거나 꺼내어 실행 가능
+                // 큐이름 생략시 디폴트 이름은 'fx' (jQuery 효과(애니메이션) 메서드들이 사용하는 큐)
+                // $('#inbox').queue('myq', function() {
+                $('#inbox').queue(function() {
+                    $('#inbox').html(v);
+                });
+           });
+
+           $('#btn18').on('click', function() {
+               //엘리먼트의 큐(함수배열)에 저장된 가장 오래된 함수를 꺼내서 실행
+                // $('#inbox').dequeue('myq');
+                $('#inbox').dequeue();
+           });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="outbox" class="box">
+        <div id="inbox" class="box">상자</div>
+    </div>
+    <button id="btn01">hide</button>
+    <button id="btn02">show</button>
+    <button id="btn03">toggle</button>
+    <button id="btn04">fadeOut</button>
+    <button id="btn05">fadeIn</button>
+    <button id="btn06">fadeToggle</button>
+    <button id="btn07">fadeTo</button>
+    <button id="btn08">slideUp</button>
+    <button id="btn09">slideDown</button>
+    <button id="btn10">slideToggle</button>
+    <button id="btn11">animate1</button>
+    <button id="btn12">animate2</button>
+    <button id="btn13">reset</button>
+    <button id="btn14">finish</button>
+    <button id="btn15">stop</button>
+    <button id="btn16">clear</button>
+
+    <hr />
+    <input type="text" id="num" />
+    <button id="btn17">queue</button>
+    <button id="btn18">dequeue</button>
+    <button id="btn19">버튼19</button>
+    <button id="btn20">버튼20</button>
+</body>
+</html>

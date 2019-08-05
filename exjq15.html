@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ MULTI-LEVEL SELECT</title>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        var codeList = [
+         { code: '100', title: '식사', pcode: null }
+            ,{ code: '110', title: '한식', pcode: '100'}
+                ,{ code: '111', title: '비빔밥', pcode: '110'}
+                ,{ code: '112', title: '불고기', pcode: '110'}
+                ,{ code: '113', title: '청국장', pcode: '110'}
+            ,{ code: '120', title: '중식', pcode: '100'}
+                ,{ code: '121', title: '짜장면', pcode: '120'}
+                ,{ code: '122', title: '짬뽕', pcode: '120'}
+                ,{ code: '123', title: '볶음밥', pcode: '120'}
+        ,{ code: '200', title: '음료', pcode: null }
+            ,{ code: '210', title: '차', pcode: '200'}
+                ,{ code: '211', title: '커피', pcode: '210'}
+                ,{ code: '212', title: '녹차', pcode: '210'}
+                ,{ code: '213', title: '홍차', pcode: '210'}
+            ,{ code: '220', title: '쥬스', pcode: '200'}
+                ,{ code: '221', title: '딸기쥬스', pcode: '220'}
+                ,{ code: '222', title: '키위쥬스', pcode: '220'}
+                ,{ code: '223', title: '오렌지쥬스', pcode: '220'}
+        ];
+    </script>
+</head>
+<body>
+    대분류 : <select name="large" data-sub="middle" ></select>
+    중분류 : <select name="middle" data-sub="small"></select>
+    소분류 : <select name="small"></select>
+</body>
+</html>

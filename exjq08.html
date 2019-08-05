@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ EVENT</title>
+    <style>
+        #bigbox {
+            border: 1px solid black;
+            background-color: steelblue;
+            padding: 100px;
+        }
+        #smallbox {
+            border: 5px solid black;
+            width: 200px;
+            height: 200px;
+            background-color: darkgoldenrod;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        $(function() {
+            console.log( $('#smallbox').css('width') , $('#smallbox').css('height') );
+            //엘리먼트의 너비와 높이 (패딩을 제외한 content영역)
+            console.log( $('#smallbox').width() , $('#smallbox').height() );
+            //패딩(안쪽여백)까지 포함
+            console.log( $('#smallbox').innerWidth() , $('#smallbox').innerHeight() );
+            //경계선까지 포함
+            console.log( $('#smallbox').outerWidth() , $('#smallbox').outerHeight() );
+            //마진(바깥여백) 포함
+            console.log( $('#smallbox').outerWidth(true) , $('#smallbox').outerHeight(true) );
+            
+            //엘리먼트의 위치 정보를 가진 객체 반환 (document 좌측상단을 기준)
+            var off = $('#smallbox').offset();
+            console.log( off.left, off.top );
+            //엘리먼트의 위치 정보를 가진 객체 반환 (position: static 이 아닌 가장 가까운 조상 엘리먼트의 좌측상단 기준)
+            var pos = $('#smallbox').position();
+            console.log( pos.left, pos.top );
+
+            // 이벤트명과 동일한 이름의 이벤트핸들러 설정 메서드 제공
+            // $().이벤트명(이벤트핸들러함수); == $().on('이벤트명',이벤트핸들러함수);
+            // 이벤트핸들러 설정 메서드에 인자를 지정하지 않으면, 해당 이벤트를 발생
+            // $().이벤트명(); == $().trigger('이벤트명');
+            
+            // $('#smallbox').on('click', function(ev) {
+            $('#smallbox').click(function(ev) {
+                console.log( ev.type ); //이벤트 타입
+                console.log( ev.target ); //이벤트가 처음 발생한 엘리먼트
+                console.log( ev.currentTarget ); //이벤트버블링 과정 중 현재 엘리먼트
+                console.log( ev.delegateTarget ); //현재 실행중인 이벤트핸들러가 부착된 엘리먼트
+                console.log( ev.relatedTarget ); //이벤트와 관련된 다른 엘리먼트
+                console.log( ev.pageX ); //이벤트가 발생한 지점의 X좌표 (document기준)
+                console.log( ev.pageY ); //이벤트가 발생한 지점의 Y좌표 (document기준)
+                console.log( ev.which ); //키보드이벤트에서 키의 코드값
+                // ev.preventDefault(); //브라우저 기본 동작 취소
+                // ev.stopPropagation(); //부모 엘리먼트로 이벤트 전파(전달) 중단
+                // ev.stopImmediatePropagation(); //현재 엘리먼트의 다른 이벤트 핸들러에게도 이벤트 전파 중단
+                //엘리먼트 기준 이벤트 발생 지점 좌표 
+                var x = ev.pageX - $(this).offset().left;
+                var y = ev.pageY - $(this).offset().top;
+                console.log(x, y);
+            });
+
+            // 마우스 커서를 버튼 위로 이동하면 버튼의 글자를 "누르세요"라고 변경
+            // 마우스 커서를 버튼 밖으로 이동하면 버튼의 글자를 원래대로 변경
+            // $('button').on('mouseenter', function() {
+            $('button').mouseenter(function() {
+                // .data('key', value) : 엘리먼트에 부가적인 데이터를 key-value 쌍으로 저장
+
+            });
+            // $('button').on('mouseleave', function() {
+            $('button').mouseleave(function() {
+
+            });
+
+            // $().hover(mouseenter이벤트발생시실행할함수,mouseleave이벤트발생시실행할함수);
+            // $('#smallbox').hover(function() {
+            //     console.log('mouseenter!');
+            // }, function() {
+            //     console.log('mouseleave!');
+            // });
+            // $().hover(mouseenter또는mouseleave이벤트발생시실행할함수);
+            // $('#smallbox').hover(function() {
+            //     console.log('mouseenter or mouseleave');
+            // });
+        });
+    </script>
+</head>
+<body>
+    <h1>이벤트 연습</h1>
+    <button>버튼1</button>
+    <button>버튼2</button>
+    <div id="bigbox">
+        <div id="smallbox">상자</div>
+    </div>
+</body>
+</html>
