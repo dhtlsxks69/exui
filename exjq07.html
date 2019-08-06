@@ -61,11 +61,14 @@
          // 1. '버튼 추가' 버튼을 클릭할 때마다, id가 btndiv인 엘리먼트 내부에 
          //    '추가 버튼'이라는 내용을 가진 button 엘리먼트를 하나씩 추가
          $('#btn7').on('click', function(){
-            $('#btndiv').html('버튼추가').replaceAll('#btndiv');
+            $('<button>').html('추가버튼').appendTo('#btndiv');
          });
+
          // 2. id가 btndiv인 엘리먼트 내부에 있는 button 엘리먼트를 클릭하면, 
          //    '추가 버튼 클릭!'이라는 메시지를 출력
-         
+         $('#btndiv').on('click', 'button', function () {
+            alert('추가 버튼 클릭!');
+         });
 
          // $('선택자1').on('이벤트명', '선택자2', 이벤트핸들러함수);
          // '선택자1'에 맞는 엘리먼트의 내부에 있는 '선택자2'에 맞는 엘리먼트에 

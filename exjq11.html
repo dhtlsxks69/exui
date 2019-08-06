@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS DOM EX</title>
     <style>
-        #product img , #cart img {
+        #product img,
+        #cart img {
             width: 50px;
             height: 50px;
         }
-        #product , #cart {
+
+        #product,
+        #cart {
             border: 1px solid black;
             padding: 20px;
         }
     </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+            // 1. id 가 product 인 div 안에 있는 img 엘리먼트 클릭하면, 
+            //  클릭한 img 엘리먼트와 동일한 엘리먼트를 id 가 cart 인 div 에 추가
+            $('#product img').on('click', function () {
+                // $('<img>')
+                // .attr('src', $(this).attr('src'))
+                // .attr('data-price', $(this).attr('data-price'))
+                // .appendTo('#cart');
+                $(this).clone().appendTo('#cart');
+
+                var price = $(this).attr('data-price');
+                var total = $('[name="total"]').val();
+                total = Number(total) + Number(price);
+                $('[name="total"]').val(total);
+            });
+            // 2. id 가 cart 인 div 안에 있는 img 엘리먼트 클릭하면, 
+            //  클릭한 img 엘리먼트를 삭제
+            $('#cart').on('click', 'img', function(){
+                $(this).remove();
+
+                var price = $(this).attr('data-price');
+                var total = $('[name="total"]').val();
+                total = Number(total) - Number(price);
+                $('[name="total"]').val(total);
+            })
+            // 3. data-price 속성에 정의된 가격을 이용하여, 
+            //  현재 장바구니에 담겨있는 상품들의 가격 총액을 input 엘리먼트에 출력
+
+        });
+    </script>
 </head>
+
 <body>
     <h1>상품목록</h1>
     <div id="product">
@@ -26,13 +63,5 @@
     <h1>장바구니</h1>
     <div>총 구매금액 : <input name="total" value="0" readonly />원</div>
     <div id="cart"></div>
-    <script>
-        // 1. id 가 product 인 div 안에 있는 img 엘리먼트 클릭하면, 
-        //  클릭한 img 엘리먼트와 동일한 엘리먼트를 id 가 cart 인 div 에 추가
-        // 2. id 가 cart 인 div 안에 있는 img 엘리먼트 클릭하면, 
-        //  클릭한 img 엘리먼트를 삭제
-        // 3. data-price 속성에 정의된 가격을 이용하여, 
-        //  현재 장바구니에 담겨있는 상품들의 가격 총액을 input 엘리먼트에 출력
-    </script>
 </body>
 </html>
