@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TYPE</title>
     <style>
+        #screen {
+            border: 1px solid black;
+            height: 400px;
+            position: relative;
+        }
+        #screen .tag {
+            background-color: orange;
+            border: 1px solid black;
+            position: absolute;
+            top: 0px;
+        }
     </style>
-    <script src="jquery-3.2.1.js"></script>
+    <script src="jquery-3.4.1.js"></script>
     <script>
-        var availableTags = [ "ActionScript","AppleScript","Asp","BASIC",
-      "C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy",
-      "Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme" ];
+        var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC",
+            "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy",
+            "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Schema"];
+
+        $(function () {
+            var screenHeight = $('#screen').height();
+            var screenWidth = $('#screen').width();
+            setInterval(function () {
+                var randomIdx = parseInt(Math.random() * availableTags.length); //0 ~ 0.999999
+                var tag = availableTags[randomIdx];
+                var $sp = $('<span>').html(tag).attr('data-word', tag).addClass('tag')
+                .appendTo('#screen');
+                var spWidth = $sp.width();
+                var spHeight = $sp.height();
+                $sp.css('left', Math.random() * (screenWidth-spWidth))
+                .animate({top: screenHeight-spHeight}, 10000, function(){
+                    clearInterval(timerId);
+                    $('#screen span.tag').stop(true);
+                    alert('Game Over');
+                });
+            }, 5000);
+
+            $('#word').on('keyup', function(ev){
+                console.log(ev.which); //이벤트를 발생시킨 키의 코드값
+                if(ev.which == 13){ //엔터키를 누른 경우
+                    //입력한 값을 가져와서
+                    var v = $('#word').val();
+                    //입력값과 일치하는 screen안의 tag를 찾아서 제거
+                    $('#screen span[data-word="'+v+'"]').remove();
+                    $('#word').val('');
+                }
+            });
+        });
+
     </script>
 </head>
+
 <body>
     <h1>대충 타자 연습</h1>
     <div id="screen"></div>
     <hr />
     <input type="text" id="word" />
 </body>
+
 </html>

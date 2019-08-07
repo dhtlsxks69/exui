@@ -6,18 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CARS</title>
     <style>
+        #track {
+            border: 1px solid black;
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        #track img.car {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
     </style>
-    <script src="jquery-3.2.1.js"></script>
+    <script src="jquery-3.4.1.js"></script>
     <script>
+        $(function() {
+            $('.car').each(function(idx,elm){
+                $(elm).css('top', idx * 60 );
+            });
+
+            var timerId = null;
+            $('#startBtn').on('click', function() {
+                if(timerId != null) return;
+                //setInterval()로 특정 함수를 일정 시간마다 반복 실행 가능
+                //반환값으로 해당 예약 작업을 나타태는 고유한 아이디값을 반환
+                timerId = window.setInterval(function() {
+                    $('.car').each(function(idx,elm){
+                        var oldLeft = $( elm ).position().left;
+                        var newLeft = oldLeft + Math.random() * 10;
+                        $(elm).css('left', newLeft );
+                        //newLeft
+                        var trackWidth = $('#track').width();
+                        var carWidth = $(elm).width();
+                        if(newLeft + carWidth >= trackWidth){
+                            //setInterval()로 설장한 예약 반복 작업을 취소
+                            window.clearInterval(timerId);
+                        }
+                    });
+                }, 100); //100ms마다 한번씩 함수를 실행
+                
+            });
+        });
     </script>
 </head>
 <body>
     <h1>자동차 경주</h1>
+    <button id="startBtn">출발!</button>
     <div id="track">
-        <img class="car" src="./img/001-transport-5.png" alt="자동차" />
-        <img class="car" src="./img/004-transport-2.png" alt="자동차" />
-        <img class="car" src="./img/005-transport-1.png" alt="자동차" />
-        <img class="car" src="./img/006-transport.png" alt="자동차" />
+        <img class="car" src="./img/car1.png" alt="자동차" />
+        <img class="car" src="./img/car2.png" alt="자동차" />
+        <img class="car" src="./img/car3.png" alt="자동차" />
+        <img class="car" src="./img/car4.png" alt="자동차" />
     </div>
 </body>
 </html>

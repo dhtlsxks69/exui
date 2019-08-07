@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JQ MULTI-LEVEL SELECT</title>
-    <script src="jquery-3.2.1.js"></script>
+    <script src="jquery-3.4.1.js"></script>
     <script>
         var codeList = [
          { code: '100', title: '식사', pcode: null }
@@ -27,6 +27,32 @@
                 ,{ code: '222', title: '키위쥬스', pcode: '220'}
                 ,{ code: '223', title: '오렌지쥬스', pcode: '220'}
         ];
+
+        function makeOptions(parentCode, targetName){
+            var $sel = $('[name="'+targetName+'"]').empty();
+            for (var i = 0; i < codeList.length; i++) {
+                var c = codeList[i];
+                if(c.pcode == parentCode){
+                    $('<option>').val(c.code).html(c.title).appendTo($sel);
+                }
+            }
+            $sel.trigger('change');
+        }
+
+        $(function(){
+            makeOptions(null, 'large')
+
+            $('[name="large"]').on('change', function(){
+                var parentCode = $(this).val();
+                makeOptions(parentCode, 'middle');
+            });
+
+            $('[name="middle"]').on('change', function(){
+                var parentCode = $(this).val();
+                makeOptions(parentCode, 'small');
+            });
+
+        });
     </script>
 </head>
 <body>
